@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+  tf2_msgs 包的 package.xml 文件
+  该文件定义了 tf2_msgs 包的元数据、依赖项和构建信息。
+-->
+<package>
+
+  <!-- 包的名称 -->
+  <name>tf2_msgs</name>
+  <!-- 包的版本号 -->
+  <version>0.6.5</version>
+  <!-- 包的简要描述 -->
+  <description>
+    tf2_msgs
+  </description>
+  <!-- 包的作者 -->
+  <author>Eitan Marder-Eppstein</author>
+  <!-- 包的维护者及其电子邮件 -->
+  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
+  <!-- 包的许可证类型 -->
+  <license>BSD</license>
+
+  <!-- 包的官方网站 URL -->
+  <url type="website">http://www.ros.org/wiki/tf2_msgs</url>
+    
+  <!-- 构建工具依赖项 -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- 构建时依赖项 -->
+  <build_depend>actionlib_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+
+  <!-- 运行时依赖项 -->
+  <run_depend>actionlib_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>message_generation</run_depend>
+
+</package>
+
+

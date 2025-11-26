@@ -1,0 +1,24 @@
+TebLocalPlannerROS:
+
+  ## 代价地图转换插件配置
+  # costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSMCCH" # 使用DBSMCCH算法将代价地图转换为多边形
+  # costmap_converter_plugin: "costmap_converter::CostmapToLinesDBSRANSAC" # 使用DBSRANSAC算法将代价地图转换为线段
+  costmap_converter_plugin: "costmap_converter::CostmapToLinesDBSMCCH" # 使用DBSMCCH算法将代价地图转换为线段
+  # costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSConcaveHull" # 使用DBSConcaveHull算法将代价地图转换为多边形
+  # costmap_converter_plugin: "" # 禁用插件
+  costmap_converter_spin_thread: True # 是否在单独的线程中运行代价地图转换器
+  costmap_converter_rate: 10 # 代价地图转换器的运行频率 (Hz)
+ 
+ 
+  ## 配置插件 (命名空间 move_base/TebLocalPlannerROS/PLUGINNAME)
+  ## 参数必须为每个插件单独添加
+  costmap_converter/CostmapToLinesDBSRANSAC:
+    cluster_max_distance: 0.5 # 聚类最大距离
+    cluster_min_pts: 2 # 聚类最小点数
+    ransac_inlier_distance: 0.15 # RANSAC内点距离阈值
+    ransac_min_inliers: 10 # RANSAC最小内点数
+    ransac_no_iterations: 2000 # RANSAC迭代次数
+    ransac_remainig_outliers: 3 # RANSAC剩余外点数
+    ransac_convert_outlier_pts: True # 是否转换RANSAC外点
+    ransac_filter_remaining_outlier_pts: False # 是否过滤剩余的RANSAC外点
+    convex_hull_min_pt_separation: 0.1 # 凸包最小点分离距离

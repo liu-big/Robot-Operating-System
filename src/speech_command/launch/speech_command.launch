@@ -1,0 +1,19 @@
+<!--
+  speech_command.launch
+
+  该启动文件用于启动 speech_command ROS 包中的语音命令节点。
+  它定义了一个 ROS 节点，负责处理语音输入并执行相应的命令。
+-->
+<launch>
+    <!--
+      ROS 节点配置：
+      - pkg: 指定节点所属的 ROS 包，这里是 "speech_command"。
+      - type: 指定要运行的可执行文件类型，这里是 "speech_command_node"。
+              这个可执行文件通常是编译后的 C++ 或 Python 程序，实现了语音命令处理逻辑。
+      - name: 为节点指定一个唯一的名称，这里是 "speech_command_node"。
+              在 ROS 系统中，节点名称用于标识和通信。
+      - output: 指定节点的标准输出（stdout）的去向。
+                "screen" 表示将节点的输出显示在终端屏幕上，便于调试和监控。
+    -->
+    <node pkg="speech_command" type="speech_command_node" name="speech_command_node" output="screen"/>
+</launch>

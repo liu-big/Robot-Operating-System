@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!-- ekf_bringup.launch文件用于启动odom_ekf节点，该节点将robot_pose_ekf的组合里程计输出作为输入，并将其输出重新映射到/odom话题。 -->
+<launch>
+   <!-- 启动odom_ekf节点 -->
+   <node pkg="ucar_controller" type="odom_ekf.py" name="odom_ekf" output="screen">
+   	<!-- 将robot_pose_ekf的组合里程计输出作为odom_ekf的输入 -->
+   	<remap from="input" to="/robot_pose_ekf/odom_combined"/>
+   	<!-- 将odom_ekf的输出重新映射到/odom话题 -->
+   	<remap from="output" to="/odom"/>
+   </node>
+</launch>

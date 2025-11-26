@@ -1,0 +1,17 @@
+<launch>
+  <!-- Cartographer主节点 -->
+  <!-- 启动Cartographer的2D SLAM节点，用于构建地图和定位 -->
+  <node name="cartographer_node" pkg="cartographer_ros"
+      type="cartographer_node" args="
+          -configuration_directory $(find ucar_map)/cfg  <!-- 指定配置文件目录 -->
+          -configuration_basename carto_2d.lua"  <!-- 指定配置文件名，这里使用carto_2d.lua进行2D建图 -->
+      output="screen">  <!-- 将节点输出显示到屏幕 -->
+    <remap from="scan" to="scan" />  <!-- 将输入话题scan重映射为scan，确保激光雷达数据正确传入 -->
+  </node>
+
+  <!-- Cartographer占用栅格地图节点 -->
+  <!-- 启动Cartographer的占用栅格地图生成节点，将Cartographer构建的子图转换为ROS标准占用栅格地图 -->
+  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+      type="cartographer_occupancy_grid_node" args="-resolution 0.05" />  <!-- 设置地图分辨率为0.05米/像素 -->
+
+</launch>

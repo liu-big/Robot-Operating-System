@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- package.xml 是 ROS 包的清单文件，定义了包的元数据、依赖项等信息。 -->
+<package>
+  <!-- 包的名称，必须是唯一的。 -->
+  <name>geometry</name>
+  <!-- 包的版本号。 -->
+  <version>1.12.0</version>
+  <!-- 包的描述信息。 -->
+  <description>
+    <p>这是一个用于几何库套件的元包。</p>
+    <p>
+      <b>迁移说明</b>: 自 ROS Hydro 版本以来，tf 已被 "弃用"，取而代之的是 <a href = "http://wiki.ros.org/tf2">tf2</a>。tf2 是 tf 的一个迭代版本，通常以更高效的方式提供相同的功能集，并增加了一些新功能。<br/>
+      由于 tf2 是一个重大更改，tf API 保持了其当前形式。由于 tf2 具有 tf 功能的超集和更少的依赖项，tf 的实现已被移除，并替换为底层对 tf2 的调用。这意味着所有用户都将与 tf2 兼容。建议新项目直接使用 tf2，因为它具有更清晰的接口。但是，tf 将继续支持至少到 J Turtle 版本。
+    </p>
+  </description>
+  <!-- 包的维护者信息。 -->
+  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
+  <!-- 包的许可证。 -->
+  <license>BSD</license>
+  
+  <!-- 包的官方网站链接。 -->
+  <url type="website">http://www.ros.org/wiki/geometry</url>
+  <!-- 包的 bug 跟踪器链接。 -->
+  <url type="bugtracker">https://code.ros.org/trac/ros-pkg/query?component=geometry&amp;status=assigned&amp;status=new&amp;status=reopened</url>
+  <!-- 包的代码仓库链接。 -->
+  <url type="repository">https://kforge.ros.org/geometry/geometry</url>
+  
+  <!-- 包的作者信息。 -->
+  <author>Tully Foote</author>
+  
+  <!-- 构建工具依赖，这里是 Catkin。 -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- 运行时依赖项，这些是此元包所包含或依赖的其他 ROS 包。 -->
+  <run_depend>angles</run_depend>
+  <run_depend>eigen_conversions</run_depend>
+  <run_depend>kdl_conversions</run_depend>
+  <run_depend>tf</run_depend>
+  <run_depend>tf_conversions</run_depend>
+
+  <export>
+    <!-- 声明这是一个元包，它不包含实际的代码，只是一组相关包的集合。 -->
+    <metapackage/>
+  </export>
+
+</package>

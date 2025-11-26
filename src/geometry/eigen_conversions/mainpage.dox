@@ -1,0 +1,23 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b eigen_conversions 是一个ROS包，提供了Eigen库类型与ROS消息类型（如geometry_msgs）以及KDL类型之间的数据转换功能。
+
+<!-- 
+提供您的包的概述。
+-->
+
+
+\section codeapi 代码API
+
+<!--
+提供指向包内特定自动生成API文档的链接，这些文档是读者特别感兴趣的。Doxygen会
+记录您代码的几乎每个部分，因此请尽力在此处向读者指出实际的API。
+
+如果您的代码库相当大或有不同的API集，您应该使用doxygen的“group”标签将这些API保持在一起。
+例如，roscpp文档有“libros”组。
+-->
+
+
+*/

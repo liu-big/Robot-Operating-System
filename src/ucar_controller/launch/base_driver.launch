@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!-- base_driver.launch文件用于启动ucar_controller包中的基础驱动节点，并加载机器人参数。 -->
+<!-- 同时，它还包含了TF服务器、robot_pose_ekf和ekf_bringup等launch文件，用于机器人位姿估计和坐标变换。 -->
+<launch>
+  <!-- 启动基础驱动节点 -->
+  <node pkg="ucar_controller" name="base_driver" type="base_driver" output="screen" >
+    <!-- 从YAML文件加载机器人驱动参数，这里加载的是ucarV2的参数 -->
+    <rosparam command="load" file="$(find ucar_controller)/config/driver_params_ucarV2.yaml" />
+    <!-- 如果需要使用xiao的参数，可以取消注释下面这行 -->
+    <!-- <rosparam command="load" file="$(find ucar_controller)/config/driver_params_xiao.yaml" /> -->
+  </node>
+  <!-- 包含并启动TF服务器launch文件，用于发布传感器之间的坐标变换 -->
+  <include file="$(find ucar_controller)/launch/tf_server.launch" />
+  <!-- 包含并启动robot_pose_ekf launch文件，用于融合里程计和IMU数据估计机器人位姿 -->
+  <include file="$(find ucar_controller)/launch/robot_pose_ekf.launch" />
+  <!-- 包含并启动ekf_bringup launch文件，可能包含额外的EKF配置或节点 -->
+  <include file="$(find ucar_controller)/launch/ekf_bringup.launch" />
+
+  
+  <!-- 如果需要使用手柄控制，可以取消注释下面这行来启动joy_node -->
+  <!-- <node pkg="joy" name="joy_node" type="joy_node"/> -->
+</launch>

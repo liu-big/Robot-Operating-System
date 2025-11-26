@@ -1,0 +1,42 @@
+<!--
+  Gazebo仿真启动文件
+  该文件用于在Gazebo中启动一个空世界，并加载YDLIDAR的URDF模型，同时发布TF变换和模拟校准信号。
+-->
+<launch>
+  <!-- 包含Gazebo的空世界启动文件 -->
+  <include
+    file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+  <!-- 发布base_laser到base_footprint的静态TF变换
+       args: x y z roll pitch yaw parent_frame_id child_frame_id period_in_ms
+       这里将base_laser（激光雷达）相对于base_footprint（机器人基座）进行变换。
+  -->
+  <node
+    name="tf_footprint_base"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 base_laser base_footprint 40" />
+
+  <!-- 在Gazebo中生成YDLIDAR模型
+       -file: 指定URDF文件路径
+       -urdf: 表示加载的是URDF模型
+       -model: 指定模型名称
+       output: 将节点输出显示到屏幕
+  -->
+  <node
+    name="spawn_model"
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-file $(find ydlidar)/urdf/ydlidar.urdf -urdf -model ydlidar"
+    output="screen" />
+
+  <!-- 模拟发布校准信号
+       该节点发布一个布尔类型的消息到/calibrated话题，模拟校准完成。
+  -->
+  <node
+    name="fake_joint_calibration"
+    pkg="rostopic"
+    type="rostopic"
+    args="pub /calibrated std_msgs/Bool true" />
+
+</launch>

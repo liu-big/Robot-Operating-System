@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!-- package.xml 是 ROS 包的清单文件，定义了包的元数据、依赖项等信息。 -->
+<package>
+  <!-- 包的名称，必须是唯一的。 -->
+  <name>kdl_conversions</name>
+  <!-- 包的版本号。 -->
+  <version>1.12.0</version>
+  <!-- 包的描述信息。 -->
+  <description>
+    <!-- 详细描述：KDL 和 geometry_msgs 类型之间的转换函数。 -->
+    Conversion functions between KDL and geometry_msgs types.
+  </description>
+  <!-- 包的作者信息。 -->
+  <author>Adam Leeper</author>
+  <!-- 包的维护者信息。 -->
+  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
+
+  <!-- 包的许可证。 -->
+  <license>BSD</license>
+  <!-- 包的官方网站链接。 -->
+  <url>http://ros.org/wiki/kdl_conversions</url>
+
+  <!-- 构建工具依赖，这里是 Catkin。 -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- 构建时依赖项，这些包在编译此包时是必需的。 -->
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>orocos_kdl</build_depend>
+
+  <!-- 运行时依赖项，这些包在运行此包时是必需的。 -->
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>orocos_kdl</run_depend>
+</package>

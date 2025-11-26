@@ -1,0 +1,9 @@
+#!/bin/sh
+# -*- coding: utf-8 -*-
+
+# 提示用户使用tf包内的本地脚本，而不是全局脚本，因为此脚本已弃用。
+echo "Please use the package local script inside tf not the global one, this is deprecated."
+# 告知用户将为其运行rosrun命令。
+echo "Running [rosrun tf tf_remap] for you"
+# 执行rosrun命令，运行tf包中的tf_remap脚本，并传递所有命令行参数。
+exec rosrun tf tf_remap "$@"

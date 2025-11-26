@@ -1,0 +1,45 @@
+
+/** \mainpage
+
+@htmlinclude manifest.html
+
+@b tf 是一个用于跟踪坐标系的库。它提供了 C++ 和 Python 绑定。
+
+@section usage 常用用法
+对于大多数 ROS 用例，基本的 tf::Transformer 库不直接使用。
+
+它提供了两个辅助类来发送和接收 ROS 变换消息：tf::TransformBroadcaster 和 tf::TransformListener。
+
+@subsection listener TransformListener
+tf::TransformListener 类继承自 tf::Transformer，提供了基本库的所有功能。此外，它还提供了直接转换 ROS 消息数据的方法，并自动监听 ROS 上发布的变换。
+
+@subsection message_filter MessageFilter
+tf::MessageFilter 是接收几乎所有 ROS 传感器数据的推荐方法。ROS 中的数据可以相对于任何已知帧发布。tf::MessageFilter 类通过仅在可以将数据转换到所需目标帧时提供回调，从而简化了数据的使用。
+
+tf::MessageFilter 类可以订阅任何具有 ROS Header 的 ROS 数据类型。
+
+@subsection broadcaster TransformBroadcaster
+tf::TransformBroadcaster 类是 tf::TransformListener 类的补充。广播器类提供了一个简单的 API，用于向其他 ROS 节点广播坐标系变换。
+
+@subsection send_transform send_transform
+send_transform 命令是报告固定偏移变换的最简单方法。它是一个简单的命令行实用程序，重复向 ROS 发布固定偏移变换。
+
+@subsection datatypes tf 中使用的数据类型
+- Quaternion (四元数) 是 btQuaternion 的 typedef。
+- Vector3 (三维向量) 是 btVector3 的 typedef。
+- Point (点) 是 btVector3 的 typedef。
+- Transform (变换) 是 btTransform 的 typedef。
+- Pose (位姿) 是 btTransform 的 typedef。
+
+- 所有上述类型的 Stamped (带时间戳) 版本都继承自相应的数据类型，并额外包含：
+ - ros::Time stamp_ (时间戳)
+ - std::string frame_id_ (帧 ID)
+ - std::string child_frame_id_ (子帧 ID，仅用于 Stamped<Transform>)
+
+- std_msgs 中有与 Stamped 数据类型类似的 ROS 消息。
+
+- 时间由 roscpp 中 ros/time.h 的 ros::Time 和 ros::Duration 表示。
+
+
+
+*/

@@ -1,0 +1,15 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b kdl_conversions 
+
+<!-- 
+提供 kdl_conversions 包的概述。
+这个 Doxygen 主页用于生成包的文档。
+它描述了 kdl_conversions 包的主要功能：
+提供 KDL (Kinetics and Dynamics Library) 类型和 ROS geometry_msgs 类型之间的转换函数。
+这使得在 ROS 环境中处理机器人运动学和动力学数据时，可以方便地在 KDL 和 ROS 消息之间进行数据交换。
+-->
+
+*/

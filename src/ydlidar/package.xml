@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!-- package.xml -->
+<!-- @brief YDLIDAR ROS 包的清单文件。 -->
+<!-- 
+该文件定义了 ROS 包的元数据，包括包的名称、版本、描述、维护者、许可证、
+以及构建和运行所需的依赖项。它是 Catkin 构建系统识别和管理 ROS 包的关键文件。
+-->
+<package>
+  <!-- @brief 包的名称。 -->
+  <name>ydlidar</name>
+  <!-- @brief 包的版本号。 -->
+  <version>1.3.1</version>
+  <!-- @brief 包的简要描述。 -->
+  <description>The ydlidar package</description>
+
+  <!-- @brief 维护者信息。 -->
+  <!-- 可以有多个维护者标签，每个标签对应一个人。 -->
+  <!-- 示例： -->
+  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  <maintainer email="shao@eaibot.com">shao</maintainer>
+
+
+  <!-- @brief 许可证信息。 -->
+  <!-- 可以有多个许可证标签，但通常只有一个。 -->
+  <!-- 常用的许可证字符串： -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>TODO</license>
+
+
+  <!-- @brief URL 信息（可选）。 -->
+  <!-- 可以有多个 URL 标签，每个标签对应一个 URL。 -->
+  <!-- 可选的 type 属性可以是：website（网站）、bugtracker（问题追踪器）或 repository（代码仓库）。 -->
+  <!-- 示例： -->
+  <!-- <url type="website">http://wiki.ros.org/flashgo</url> -->
+
+
+  <!-- @brief 作者信息（可选）。 -->
+  <!-- 可以有多个作者标签，每个标签对应一个人。 -->
+  <!-- 作者不必是维护者，但也可以是。 -->
+  <!-- 示例： -->
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+
+
+  <!-- @brief 依赖项标签。 -->
+  <!-- 依赖项可以是 Catkin 包或系统依赖项。 -->
+  <!-- 示例： -->
+  <!-- build_depend 用于编译时需要的包： -->
+  <!--   <build_depend>message_generation</build_depend> -->
+  <!-- buildtool_depend 用于构建工具包： -->
+  <!--   <buildtool_depend>catkin</buildtool_depend> -->
+  <!-- run_depend 用于运行时需要的包： -->
+  <!--   <run_depend>message_runtime</run_depend> -->
+  <!-- test_depend 用于仅测试时需要的包： -->
+  <!--   <test_depend>gtest</test_depend> -->
+  
+  <!-- @brief 构建工具依赖。 -->
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <!-- @brief 编译依赖。 -->
+  <build_depend>rosconsole</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  
+  <!-- @brief 运行依赖。 -->
+  <run_depend>rosconsole</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+
+
+  <!-- @brief 导出标签。 -->
+  <!-- 包含其他未指定的标签，用于其他工具请求额外信息。 -->
+  <export>
+    <!-- 其他工具可以在这里放置额外信息 -->
+
+  </export>
+</package>

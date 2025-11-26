@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- tf_server.launch文件用于启动sensor_tf_server节点，该节点负责发布机器人上各个传感器（摄像头、雷达、IMU）相对于机器人基座（base_link）的坐标变换（TF）。 -->
+<!-- 文件中定义了每个传感器的位置和姿态参数，以及传感器帧和基座帧的名称，并设置了TF发布的频率。 -->
+<launch>
+  <!-- 启动sensor_tf_server节点 -->
+  <node pkg="ucar_controller" name="sensor_tf_server" type="sensor_tf_server.py" output="screen" >
+    <!-- 注意：launch文件中value只能给具体数值，不能给表达式 -->
+    
+    <!-- 摄像头相对于base_link的位姿参数 -->
+    <param name="~camera_pose_x"   value="0.15"/>
+    <param name="~camera_pose_y"   value="0.0"/>
+    <param name="~camera_pose_z"   value="0.15"/>
+    <param name="~camera_euler_r"  value="0"/>
+    <param name="~camera_euler_p"  value=" 0.0"/>
+    <param name="~camera_euler_y"  value="0"/>
+    
+    <!-- 雷达相对于base_link的位姿参数 -->
+    <param name="~lidar_pose_x"   value="-0.11"/>
+    <param name="~lidar_pose_y"   value="0.0"/>
+    <param name="~lidar_pose_z"   value="0.165"/>
+    <param name="~lidar_euler_r"  value="0.0"/>
+    <param name="~lidar_euler_p"  value="0.0"/>
+    <param name="~lidar_euler_y"  value="0.0"/>
+
+    <!-- IMU相对于base_link的位姿参数 -->
+    <param name="~imu_pose_x"   value=" 0.05"/>
+    <param name="~imu_pose_y"   value="-0.05"/>
+    <param name="~imu_pose_z"   value=" 0.05"/>
+    <param name="~imu_euler_r"  value=" 0"/>
+    <param name="~imu_euler_p"  value=" 0.0"/>
+    <param name="~imu_euler_y"  value=" 0.0"/>
+
+    <!-- 传感器帧的名称 -->
+    <param name="~camera_frame"  value="camera_frame"/>
+    <param name="~lidar_frame"   value="laser_frame"/>
+    <param name="~imu_frame"     value="imu"/>
+    
+    <!-- 机器人基座帧的名称 -->
+    <param name="~base_frame"    value="base_link"/>
+    <!-- TF发布的频率（Hz） -->
+    <param name="~tf_rate"       value="30"/>
+  </node>
+</launch>

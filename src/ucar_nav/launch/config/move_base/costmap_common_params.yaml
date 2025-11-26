@@ -1,0 +1,45 @@
+# `costmap_common_params.yaml` 文件说明文档
+# 这个文件主要用于配置基本的参数，这些参数会被用于局部代价地图（local_costmap）和全局代价地图（global_costmap）。
+# 更多信息请参考：http://wiki.ros.org/navigation/Tutorials/RobotSetup
+
+# 定义了将要向代价地图（costmap）传递信息的传感器列表。
+# 设定导航包所使用的传感器发布的话题，同时作为以下参数的命名空间。
+observation_sources: scan
+
+# `scan` 参数配置：
+#   `data_type`: 传感器数据类型，此处为 `LaserScan`（激光雷达）。
+#   `topic`: 传感器发布的话题名称，此处为 `/scan`。
+#   `marking`: 是否使用传感器的实时信息来在代价地图中标记（添加）障碍物信息。
+#   `clearing`: 是否使用传感器的实时信息来清除代价地图中的障碍物信息（例如，当障碍物消失时）。
+scan: {data_type: LaserScan, topic: /scan, marking: true, clearing: true}
+
+# 将障碍物插入代价地图的最大范围（米）。
+# 检测到一个距离小于此值的障碍物，就会将这个障碍物引入到代价地图中。
+obstacle_range: 2.2
+
+# 从地图中扫描出障碍物的最大范围（米）。
+# 实时观察此范围内代价地图中的障碍物。
+raytrace_range: 6.0
+
+# 代价比例系数。
+# 值越大，则代价值越小，机器人越倾向于靠近障碍物。
+cost_scaling_factor: 25.0  # 原始值为 36，此处调整为 25。
+
+# 将机器人的几何参数告诉导航功能包集。
+# `footprint` 表示多边形面积（此处被注释掉，使用 `robot_radius`）。
+# footprint: [[0.175, 0.12], [-0.175, 0.12], [-0.175, -0.12], [0.175, -0.12]]
+# `robot_radius` 表示圆形机器人的半径。
+robot_radius: 0.12
+
+# 等待坐标变换（TF）发布信息的超时时间（秒）。
+transform_tolerance: 2.0
+
+# 膨胀半径（米）。
+# 扩展在碰撞区域以外的代价区域，给定机器人与障碍物之间必须要保持的最小距离。
+inflation_radius: 0.16
+
+# 代价地图精度，即每个网格的尺寸（米/格）。
+resolution: 0.01
+
+# 地图类型，此处为 `costmap`。
+map_type: costmap

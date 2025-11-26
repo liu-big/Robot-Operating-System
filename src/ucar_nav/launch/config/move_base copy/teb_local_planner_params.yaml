@@ -1,0 +1,97 @@
+TebLocalPlannerROS:
+  odom_topic: odom
+  map_frame: /map
+
+  acc_lim_x: 2.35 # 1.98 第六版
+  acc_lim_y: 0.5 #0.66
+  acc_lim_theta: 9.4 # 6.5
+  max_vel_x_backwards: 16.45 # 16.45
+  max_vel_x: 4.3 # 3.2
+  max_vel_y: 0.5 # 0.55
+  max_vel_theta: 11.1 # 9.3
+
+
+  # acc_lim_x: 1.66
+  # acc_lim_y: 1.44
+  # acc_lim_theta: 4.9
+  # max_vel_x: 1.07
+  # max_vel_x_backwards: 16.45
+  # max_vel_y: 0.7
+  # max_vel_theta: 8.5
+
+
+  min_turning_radius: 0.0 #车类机器人的最小转弯半径，小型机器人的最小转弯半径（差速驱动机器人：零）
+  is_footprint_dynamic: false #是否footprint 为动态的，如果为true，则在检查轨迹可行性之前更新覆盖区
+  footprint_model:
+    # type: "polygon"
+    # vertices: [[0.175, 0.12], [-0.175, 0.12], [-0.175, -0.12], [0.175, -0.12]]
+    type: "line"
+    line_start: [-0.17, 0.0]
+    line_end: [0.17, 0.0]
+
+  yaw_goal_tolerance: 0.03
+  xy_goal_tolerance: 0.03
+  free_goal_vel: false
+
+  dt_ref: 0.35
+  dt_hysteresis: 0.1
+  min_samples: 3 
+  global_plan_overwrite_orientation: true #覆盖全局路径中局部路径点的朝向，有些全局规划者在开始和全局目标之间没有考虑局部子目标的方向，因此自动确定（覆盖全局路径的方向是预留给3D路径规划使用的对于车辆的2D规划，可以设置为False，可实现对全局路径的更好跟踪。）
+  global_plan_viapoint_sep: -0.05  #从全局计划中提取的每两个连续通过点之间的最小间隔[如果为负：禁用]（从全局规划路径中提取的路点的相互距离）
+  max_global_plan_lookahead_dist: 0.9 #考虑优化的全局计划子集的最大长度（累积欧几里得距离）
+  force_reinit_new_goal_dist: 1.0 #如果上一个目标的间隔超过指定的米数（跳过热启动），则强制规划器重新初始化轨迹
+  feasibility_check_no_poses: 1    #检测位姿可到达的时间间隔   
+  publish_feedback: false #发布包含完整轨迹和活动障碍物列表的规划器反馈
+  allow_init_with_backwards_motion: false #允许在开始时想后退来执行轨迹，如果为true，则在目标在本地成本图中落后于起点的情况下，可以使用向后运动来初始化基础轨迹（仅在机器人配备了后部传感器的情况下才建议这样做）
+  exact_arc_length: false #如果为真，规划器在速度、加速度和转弯率计算中使用精确的弧长[->增加的CPU时间]，否则使用欧几里德近似
+  shrink_horizon_backup: true #当规划器检测到系统异常，允许缩小时域规划范围
+  shrink_horizon_min_duration: 10.0 #
+
+  min_obstacle_dist: 0.2 #和障碍物最小距离
+  include_costmap_obstacles: true #必须设置为True后才能规避实时探测到的、建图时不存在的障碍物。costmap 中的障碍物是否被直接考虑
+  costmap_obstacles_behind_robot_dist: 1.0 #限制在机器人后面规划时考虑到的占用的本地成本图障碍(指定距离，单位为米)
+  inflation_dist: 0.05 #障碍物膨胀距离，惩罚成本不为零的障碍物周围的缓冲区（应大于min_obstacle_dist才能生效）
+  include_dynamic_obstacles: false #是否将动态障碍物预测为速度模型，指定是否动态障碍物的运动应该被一个恒速模型预测(这也改变了同伦类搜索)。如果为false，则认为所有的障碍都是静态的。
+  legacy_obstacle_association: false #是否严格遵循局部规划出来的路径，如果为true，则使用旧的关联策略（对于每个障碍，找到最近的TEB姿势），否则使用新的关联策略（对于每个teb姿势，仅找到“相关”障碍）。
+  obstacle_association_force_inclusion_factor: 0.5 #non-legacy障碍关联技术只尝试连接相关障碍与离散轨迹优化、specifed距离内的所有障碍被迫被包括(如min_obstacle_dist的倍数),如选择2.0为了考虑在半径为2.0 * min_obstacle_dist障碍。
+  obstacle_association_cutoff_factor: 5 #参见obstacle_association_force_inclusion_factor，但如果超过[value]*min_obstacle_dist的倍数，优化过程中所有障碍都将被忽略。首先处理obstacle_association_force_inclusion_factor
+  obstacle_poses_affected: 35
+  costmap_converter_plugin: "" #
+  costmap_converter_spin_thread: true #
+  costmap_converter_rate: 5.0 #
+
+  no_inner_iterations: 3 #被外循环调用后内循环执行优化次数
+  no_outer_iterations: 3 #执行的外循环的优化次数
+  penalty_epsilon: 0.18 #对于硬约束近似，在惩罚函数中添加安全范围(提高penalty_epsilon。此项为速度等约束提供类似膨胀层的缓冲效果。接近限速将产生一定的惩罚值。)
+  weight_acc_lim_x: 4.1 #最大x 加速度权重
+  weight_acc_lim_theta: 1.7 #最大角速度权重
+  weight_max_vel_x: 4.1 #最大x速度权重
+  weight_max_vel_theta: 5.9 #最大加速度权重
+  weight_kinematics_nh: 10 #调整顺应纵向运动和非顺应横向运动（扫射）之间的权衡。
+  weight_kinematics_forward_drive: 1000.0 #优化过程中，迫使机器人只选择前进方向，差速轮适用（大幅增加weight_kinematics_forward_drive（>100），禁止规划倒车。如仍规划倒车，说明找不到可行的前向行驶路径。若路径确实存在，可以检查转弯半径、各种footprint是否正确，膨胀层是否合理。）
+  weight_kinematics_turning_radius: 1000.0 #优化过程中，车型机器人的最小转弯半径的权重
+  weight_optimaltime: 20 # 25 #这个参数是最优时间权重，如果大了，那么车会在直道上快速加速，并且路径规划的也会切内道 #36.5(协会表演减少了)
+  weight_obstacle: 25.0 # 25 优化过程中，和障碍物最小距离的权重
+  weight_viapoint: 200.0  #优化过程中，和全局路径采样点距离的权重
+  weight_inflation: 0.06 #优化过程中， 膨胀区的权重
+  weight_shortest_path: 5.0 #距离优化，线更直
+  weight_adapt_factor: 2.0 #在每次外部TEB迭代中，一些特殊权重（当前为“ weight_obstacle”）会以此因子重复缩放（weight_new：weight_old * factor）； 迭代地增加权重而不是设置较大的先验值会导致底层优化问题的更好的数值条件。
+
+  enable_homotopy_class_planning: false
+  enable_multithreading: false
+  max_number_classes: 2 #4 改 2 规划出的最多轨迹数,这个参数是可以解决多个障碍堵路规划抖动问题
+  selection_cost_hysteresis: 1.0 #指定新候选人必须有多少轨迹成本 先前选择的轨迹以进行选择（如果new_cost <old_cost * factor则选择）
+  selection_obst_cost_scale: 100.0 #为了选择“最佳”候选人，障碍成本项的额外缩放(new_obst_cost: obst_cost*factor)
+  selection_viapoint_cost_scale: 1.0 #仅为了选择“最佳”候选人，就可以额外增加通点成本条款。 （new_viapt_cost：viapt_cost * factor）
+  selection_alternative_time_cost: false #如果为true，则将时间成本替换为总过渡时间。
+  roadmap_graph_no_samples: 15 #如果simple_exploration被turend关闭，请指定为创建路线图图而生成的示例数量
+  roadmap_graph_area_width: 5 #指定采样区域在开始和目标[m]之间的宽度(高度等于开始和目标的距离)
+  h_signature_prescaler: 1.0 #缩放障碍物数值，允许设置大量障碍物。不要选得太低，否则无法区分障碍物(0.2<H<=1)
+  h_signature_threshold: 0.1 #如果实部和复部的差都低于指定的阈值，则假设两个h-符号相等
+  obstacle_heading_threshold: 0.45 #指定障碍物航向和目标航向之间的标准化标量积的值，以便将它们(障碍物)考虑到探索中)
+  visualize_hc_graph: false #可视化为探索新同伦类而创建的图
+  viapoints_all_candidates: true #如果为true，则将不同拓扑的所有轨迹附加到该组通孔点，否则仅附加与初始/全局计划共享同一轨迹的轨迹（在test_optim_node中无效）。
+  switching_blocking_period: 0.0 #指定允许切换到新的等效类之前需要终止的持续时间（以秒为单位）
+  wheelbase: 0.2
+
+

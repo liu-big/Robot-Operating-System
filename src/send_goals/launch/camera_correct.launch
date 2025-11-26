@@ -1,0 +1,19 @@
+<launch>
+    <!-- 生成一个 image_proc/rectify nodelet 来校正 RGB 图像 -->
+    <node pkg="nodelet" type="nodelet" name="rectify_rgb_1"
+          args="load image_proc/rectify manager_1 --no-bond"
+          respawn="true">
+      <!-- image_mono：未矫正的的图像  image_rect经过校正后的图像  -->
+      <remap from="image_mono"  to="/usb_cam/image_raw" />
+      <param name="interpolation"  value="0" />
+      <param name="queue_size"  value="2" />
+      <remap from="camera_info"  to="/usb_cam/camera_info" />
+      <remap from="image_rect"  to="/usb_cam/image_rect" />
+    </node>
+
+
+
+</launch>
+
+
+

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<?xml version="1.0"?>
+<!--
+  package.xml
+
+  @brief ROS 包 `speech_command` 的清单文件。
+
+  该文件定义了 ROS 包的元数据，包括名称、版本、描述、维护者、许可证、依赖项等。
+  它是 ROS 构建系统 (Catkin) 和 ROS 生态系统识别和管理包的基础。
+-->
+<package format="2">
+  <!-- 包的名称，必须是唯一的，并且符合 ROS 包命名规范 -->
+  <name>speech_command</name>
+  <!-- 包的版本号，遵循语义化版本控制规范 (major.minor.patch) -->
+  <version>0.0.0</version>
+  <!-- 包的简短描述，通常用于说明包的主要功能 -->
+  <description>The speech_command package</description>
+
+  <!-- 维护者标签：至少需要一个，可以有多个，每个人一个标签 -->
+  <!-- 示例： -->
+  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  <maintainer email="inano@todo.todo">inano</maintainer>
+
+
+  <!-- 许可证标签：至少需要一个，可以有多个，每个标签一个许可证 -->
+  <!-- 常用的许可证字符串： -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>TODO</license>
+
+
+  <!-- URL 标签是可选的，但可以有多个，每个标签一个 URL -->
+  <!-- 可选属性 type 可以是：website（网站）, bugtracker（错误追踪器）, 或 repository（代码仓库） -->
+  <!-- 示例： -->
+  <!-- <url type="website">http://wiki.ros.org/speech_command</url> -->
+
+
+  <!-- 作者标签是可选的，可以有多个，每个人一个标签 -->
+  <!-- 作者不必是维护者，但可以是 -->
+  <!-- 示例： -->
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+
+
+  <!-- *depend 标签用于指定依赖项 -->
+  <!-- 依赖项可以是 Catkin 包或系统依赖项 -->
+  <!-- 示例： -->
+  <!-- 使用 depend 作为同时是构建和执行依赖项的包的快捷方式 -->
+  <!--   <depend>roscpp</depend> -->
+  <!--   请注意，这等同于以下内容： -->
+  <!--   <build_depend>roscpp</build_depend> -->
+  <!--   <exec_depend>roscpp</exec_depend> -->
+  <!-- build_depend 用于编译时需要的包： -->
+  <!--   <build_depend>message_generation</build_depend> -->
+  <!-- build_export_depend 用于构建此包时需要的包： -->
+  <!--   <build_export_depend>message_generation</build_export_depend> -->
+  <!-- buildtool_depend 用于构建工具包： -->
+  <!--   <buildtool_depend>catkin</buildtool_depend> -->
+  <!-- exec_depend 用于运行时需要的包： -->
+  <!--   <exec_depend>message_runtime</exec_depend> -->
+  <!-- test_depend 用于仅用于测试的包： -->
+  <!--   <test_depend>gtest</test_depend> -->
+  <!-- doc_depend 用于仅用于构建文档的包： -->
+  <!--   <doc_depend>doxygen</doc_depend> -->
+  <!-- 构建工具依赖：指定构建此包所需的构建系统，这里是 Catkin -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <!-- 构建依赖：指定编译此包所需的其他 ROS 包 -->
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>roslib</build_depend>
+  <build_depend>serial</build_depend>
+  <!-- 构建导出依赖：指定其他包在构建时需要此包导出的哪些依赖 -->
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>roslib</build_export_depend>
+  <build_export_depend>serial</build_export_depend>
+  <!-- 执行依赖：指定此包在运行时所需的其他 ROS 包 -->
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>roslib</exec_depend>
+  <exec_depend>serial</exec_depend>
+  <!-- export 标签包含其他未指定的标签，用于包的额外元数据 -->
+  <export>
+    <!-- 其他工具可以请求在此处放置额外信息 -->
+
+  </export>
+</package>

@@ -1,0 +1,33 @@
+# 全局规划器参数配置
+GlobalPlanner:
+  # 是否允许规划器在未知区域进行路径规划
+  allow_unknown: true
+  # 默认的目标点容忍度，当机器人距离目标点小于此值时，认为到达目标
+  default_tolerance: 0.05
+  # 是否使用Dijkstra算法进行路径搜索
+  use_dijkstra: true
+  # 是否使用二次插值来计算路径
+  use_quadratic: true
+  # 是否使用网格路径（grid path）
+  use_grid_path: false
+  # 是否在地图上绘制轮廓
+  outline_map: false
+  # 是否使用旧版navfn的行为
+  old_navfn_behavior: false
+
+  # 是否可视化势场
+  visualize_potential: false
+  # 是否发布势场信息
+  publish_potential: true
+
+  # 致命障碍物的代价，高于此值的区域被认为是不可通行的
+  lethal_cost: 253 #253
+  # 中性区域的代价，用于区分障碍物和自由空间
+  neutral_cost: 50.0 #10.0
+  # 代价因子，用于调整路径规划中代价的权重
+  cost_factor: 0.55 #3.2
+
+  # 机器人朝向模式，0表示不考虑朝向，1表示考虑朝向
+  orientation_mode: 0
+  # 朝向窗口大小
+  orientation_window_size: 1

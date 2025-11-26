@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!--
+  package.xml
+
+  Copyright (c) 2023. All rights reserved.
+
+  tf2 包的 ROS 包定义文件。
+  此文件定义了包的元数据、依赖项和构建信息。
+-->
+<package>
+  <!-- 包的名称，必须是唯一的 -->
+  <name>tf2</name>
+  <!-- 包的版本号 -->
+  <version>0.6.5</version>
+  <!-- 包的简短描述 -->
+  <description>
+    tf2 是第二代坐标变换库，它允许用户跟踪随时间变化的多个坐标系。tf2
+    维护了坐标系之间在时间上缓冲的树形结构关系，并允许用户在任何所需的时间点
+    在任意两个坐标系之间变换点、向量等。
+  </description>
+  <!-- 包的作者 -->
+  <author>Tully Foote</author>
+  <author>Eitan Marder-Eppstein</author>
+  <author>Wim Meeussen</author>
+  <!-- 包的维护者及其电子邮件 -->
+  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
+  <!-- 包的许可证类型 -->
+  <license>BSD</license>
+
+  <!-- 包的官方网站或 wiki 页面 -->
+  <url type="website">http://www.ros.org/wiki/tf2</url>
+    
+  <!-- 构建工具依赖，指定 catkin 的最低版本 -->
+  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
+
+  <!-- 构建时依赖项，这些包在编译此包时是必需的 -->
+  <build_depend>libconsole-bridge-dev</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>rostime</build_depend>
+  <build_depend>tf2_msgs</build_depend>
+
+  <!-- 运行时依赖项，这些包在运行此包时是必需的 -->
+  <run_depend>libconsole-bridge-dev</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>rostime</run_depend>
+  <run_depend>tf2_msgs</run_depend>
+
+</package>
+
+

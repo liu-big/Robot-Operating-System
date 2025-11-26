@@ -1,0 +1,24 @@
+/**
+ * @mainpage tf2_msgs 包概述
+ *
+ * @htmlinclude manifest.html
+ *
+ * \b tf2_msgs 包含 tf2 相关的消息定义。
+ *
+ * <!--
+ * 提供您的包的概述。
+ * -->
+ *
+ *
+ * \section codeapi 代码 API
+ *
+ * <!--
+ * 提供指向包内特定自动生成 API 文档的链接，这些文档是读者特别感兴趣的。Doxygen 将
+ * 几乎记录您代码的每个部分，因此请在此处尽力将读者指向实际的 API。
+ *
+ * 如果您的代码库相当大或具有不同的 API 集，您应该使用 doxygen 的“group”标签将这些 API 放在一起。
+ * 例如，roscpp 文档有一个“libros”组。
+ * -->
+ *
+ *
+ */

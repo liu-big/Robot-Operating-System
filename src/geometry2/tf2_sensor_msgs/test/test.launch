@@ -1,0 +1,14 @@
+<!--
+  tf2_sensor_msgs测试启动文件
+  该文件用于启动tf2_sensor_msgs包的测试节点。
+-->
+<launch>
+  <!--
+    test标签用于定义一个测试节点。
+    test-name: 测试的名称，这里是tf2_sensor_msgs。
+    pkg: 测试节点所属的ROS包，这里是tf2_sensor_msgs。
+    type: 测试节点的可执行文件类型，这里是test_tf2_sensor_msgs_cpp，表示运行C++测试。
+    time-limit: 测试运行的时间限制，单位为秒，这里是120秒。
+  -->
+  <test test-name="tf2_sensor_msgs" pkg="tf2_sensor_msgs" type="test_tf2_sensor_msgs_cpp" time-limit="120" />
+</launch>

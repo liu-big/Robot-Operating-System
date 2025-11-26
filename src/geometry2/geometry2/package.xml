@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+  package.xml
+
+  Copyright (c) 2023. All rights reserved.
+
+  geometry2 元包的 ROS 包定义文件。
+  此文件定义了包的元数据、依赖项和构建信息。
+-->
+<package>
+  <!-- 包的名称，必须是唯一的 -->
+  <name>geometry2</name>
+  <!-- 包的版本号 -->
+  <version>0.6.5</version>
+  <!-- 包的简短描述 -->
+  <description>
+    <!-- 包的详细描述 -->
+    A metapackage to bring in the default packages second generation Transform Library in ros, tf2.
+  </description>
+  <!-- 包的作者 -->
+  <author>Tully Foote</author>
+  <!-- 包的维护者及其电子邮件 -->
+  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
+  <!-- 包的许可证类型 -->
+  <license>BSD</license>
+
+  <!-- 包的官方网站或 wiki 页面 -->
+  <url type="website">http://www.ros.org/wiki/geometry2</url>
+    
+  <!-- 构建工具依赖，指定 catkin 的最低版本 -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- 运行时依赖项，这些包在运行此元包时是必需的 -->
+  <run_depend>tf2</run_depend>
+  <run_depend>tf2_bullet</run_depend>
+  <run_depend>tf2_eigen</run_depend>
+  <run_depend>tf2_geometry_msgs</run_depend>
+  <run_depend>tf2_kdl</run_depend>
+  <run_depend>tf2_msgs</run_depend>
+  <run_depend>tf2_py</run_depend>
+  <run_depend>tf2_ros</run_depend>
+  <run_depend>tf2_sensor_msgs</run_depend>
+  <run_depend>tf2_tools</run_depend>
+
+  <!-- 导出标签，用于声明包提供的额外信息，例如这是一个元包 -->
+  <export>
+    <metapackage/>
+  </export>
+</package>

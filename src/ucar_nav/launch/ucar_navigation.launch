@@ -1,0 +1,49 @@
+<!-- 
+ucar_navigation.launch 文件是 ucar_nav 包的主启动文件，用于集成和启动机器人导航所需的各个ROS节点。它包含了底盘驱动、激光雷达、地图服务、AMCL定位以及move_base导航栈的配置，并启动RViz进行可视化。
+-->
+<launch>
+
+    <!-- 包含ucar_controller包中的base_driver启动文件，用于启动机器人底盘驱动 -->
+  <include file="$(find ucar_controller)/launch/base_driver.launch" > </include>
+
+  <!-- 包含ydlidar包中的ydlidar启动文件，用于启动激光雷达 -->
+  <include file="$(find ydlidar)/launch/ydlidar.launch" > </include>
+
+  <!-- 启动地图服务器节点，加载预设的地图文件 -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find ucar_nav)/maps/map.yaml" output="screen">
+    <!-- 设置地图的frame_id为"map" -->
+    <param name="frame_id" value="map" />
+  </node> 
+
+  <!-- 包含ucar_nav包中AMCL定位的启动文件，用于机器人定位 -->
+  <include file="$(find ucar_nav)/launch/config/amcl/amcl_omni.launch" > </include>
+
+  <!-- 启动move_base导航栈节点，负责机器人的全局和局部路径规划与运动控制 -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <!-- 设置全局路径规划器为GlobalPlanner -->
+    <param name="base_global_planner" value="global_planner/GlobalPlanner"/>
+    <!-- 禁用恢复行为，防止机器人陷入困境时执行默认恢复动作 -->
+    <param name="recovery_behavior_enabled" value="false"/>
+    <!-- 设置局部路径规划器为TebLocalPlannerROS -->
+    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS"/>
+    <!-- 加载代价地图通用参数，应用于全局代价地图 -->
+    <rosparam file="$(find ucar_nav)/launch/config/move_base/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <!-- 加载代价地图通用参数，应用于局部代价地图 -->
+    <rosparam file="$(find ucar_nav)/launch/config/move_base/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <!-- 加载全局规划器参数 -->
+    <rosparam file="$(find ucar_nav)/launch/config/move_base/global_planner_params.yaml" command="load" />
+    <!-- 加载Teb局部规划器参数 -->
+    <rosparam file="$(find ucar_nav)/launch/config/move_base/teb_local_planner_params.yaml" command="load" />
+    <!-- 加载局部代价地图参数 -->
+    <rosparam file="$(find ucar_nav)/launch/config/move_base/local_costmap_params.yaml" command="load" />
+    <!-- 加载全局代价地图参数 -->
+    <rosparam file="$(find ucar_nav)/launch/config/move_base/global_costmap_params.yaml" command="load" />
+    <!-- <rosparam file="$(find ucar_nav)/launch/config/move_base/costmap_converter_params.yaml" command="load" /> -->
+    <!-- 将cmd_vel话题重映射到自身，确保命令发布正确 -->
+    <remap from="cmd_vel" to="cmd_vel" />
+  </node>
+
+  <!-- 启动RViz可视化工具，加载预设的导航配置 -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ucar_nav)/rviz/nav.rviz" />
+
+</launch>

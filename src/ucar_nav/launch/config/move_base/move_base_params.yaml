@@ -1,0 +1,22 @@
+# move_base 核心参数配置
+
+# 是否在 move_base 节点关闭时同时关闭代价地图节点
+shutdown_costmaps: false
+# 控制器周期和发布速度指令的频率（Hz）
+controller_frequency: 20.0
+# 等待全局规划器生成有效路径的最长时间（秒）。如果超过此时间仍未生成路径，则会尝试恢复行为。
+planner_patience: 5.0
+# 等待局部控制器生成有效速度指令的最长时间（秒）。如果超过此时间仍未生成指令，则会尝试恢复行为。
+controller_patience: 15.0
+# 障碍物距离（米），用于保守重置行为，当机器人距离障碍物小于此值时，会触发重置。
+# conservative_reset_dist: 2.0
+# 全局规划器运行频率（Hz），决定了全局路径规划的更新速率。
+planner_frequency: 5.0
+# 恢复行为中，机器人振荡（原地打转）的超时时间（秒）。如果机器人在此时间内持续振荡，则会触发其他恢复行为。
+oscillation_timeout: 5.0
+# 恢复行为中，机器人有效移动的最小距离（米）。如果机器人移动距离小于此值，则认为其处于振荡状态。
+oscillation_distance: 0.01
+# 是否启用恢复行为。如果设置为 true，当机器人遇到障碍物或无法规划路径时，move_base 会尝试执行预定义的恢复行为（如原地旋转、清除代价地图等）。
+recovery_behavior_enabled: false
+# 是否允许在恢复行为中进行清除障碍物的旋转。如果设置为 true，机器人会尝试原地旋转以清除局部代价地图中的障碍物信息。
+clearing_rotation_allowed: true

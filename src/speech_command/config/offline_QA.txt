@@ -1,0 +1,4 @@
+向左走|往左走|左走:AA0200FF:/audio/offline_left.mp3
+向前走|往前走|前走:AA0100FF:/audio/offline_left.mp3
+向右走|往右走|右走:AA0300FF:/audio/offline_left.mp3
+向后走|往后走|后走:AA0400FF:/audio/offline_left.mp3

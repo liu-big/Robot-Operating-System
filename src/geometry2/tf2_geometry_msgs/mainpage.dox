@@ -1,0 +1,16 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b tf2_geometry_msgs 包含用于在各种 geometry_msgs 数据类型之间进行转换的函数。
+
+该库是 tf/convert.h 中指定的模板化转换接口的实现。
+它提供了在各种 geometry_msgs 数据类型（如 Vector, Point, Pose, Transform, Quaternion 等）之间进行转换和变换的便捷函数。
+
+有关 tf2 中数据类型转换的更多信息，请参阅 <A HREF="http://wiki.ros.org/tf2/Tutorials/Migration/DataConversions">转换概述</A> wiki 页面。
+
+\section codeapi 代码 API 
+
+该库仅包含一个头文件 tf2_geometry_msgs/tf2_geometry_msgs.h，主要由 tf2/convert.h 中定义的模板函数的特化组成。
+
+*/

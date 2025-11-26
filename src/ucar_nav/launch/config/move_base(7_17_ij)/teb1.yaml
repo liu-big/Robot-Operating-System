@@ -1,0 +1,222 @@
+TebLocalPlannerROS:
+    
+  # Trajectory
+  teb_autosize: True
+  dt_ref: 0.3                                #最优树上相邻姿态的最优距离————建议设为车长
+  dt_hysteresis: 0.1                        #当相邻姿态距离和dt_ref的差超过正负dt_hysteresis时，规划器将改变这一距离     
+  max_samples: 50                            #500默认值。
+  global_plan_overwrite_orientation: True    #覆盖由全局规划器提供的局部子目标的方向
+  allow_init_with_backwards_motion: False
+  #A
+  max_global_plan_lookahead_dist: 1         #A 指定用于优化的全局规划子集的最大长度(累积欧氏距离)。实际长度是由本地成本映射大小和这个最大边界的逻辑结合决定的。设置为零或负值以取消此限制。
+                                              #最大向前看距离 
+                                              #应随车辆最大速度的增大而增大
+                                              #不应超过激光雷达等传感器的可靠测量范围
+                                              #不应超过局部耗费地图的大小
+                                              #决定局部规划初始轨迹的最大长度，实际调试发现此参数无需过大，因为局部轨迹在每个控制周期都被更新，实际执行的指令仅是轨迹上第一个点的速度值
+  shrink_horizon_backup: false               #当规划器检测到系统异常，是否允许缩小时域规划范围
+  shrink_horizon_min_duration:       4       #10
+  exact_arc_length: True                   #如果为真，规划器在速度、加速度和转弯率计算中使用精确的弧长[->增加的CPU时间]，点越近就用精准的
+                                            #否则使用欧几里德近似
+  global_plan_prune_distance: 1            #该参数决定了从机器人当前位置的后面一定距离开始裁剪
+  publish_feedback: False                  #如果设置为True，则可以在ROS话题上查看反馈信息，包括当前机器人状态、规划目标
+                                            #局部地图、机器人足迹、局部路径等等。如果设置为False，则不会发布任何反馈信息。默认值为False。
+
+  cmd_angle_instead_rotvel: False         #表示是否使用角度作为机器人的控制输入
+  #如果设置为 True，则机器人的控制输入为角度，如果设置为 False，则控制输入为角速度。 通常，这个参数与具体的机器人底盘相关，需要根据实际情况进行调整。
+  #如果使用角速度作为控制输入，机器人会以一个固定的速度旋转，这种控制方式比较简单，但是容易出现偏差。如果使用角度作为控制输入，则可以更加精确地控制机器人的方向，但是需要注意控制输入的平滑性。 
+
+  feasibility_check_no_poses: 0       #默认值为 0。
+  #为 1 时，表示不对中间路径点进行可行性检查；
+  #当 feasibility_check_no_poses 的值为 0 时，表示对所有中间路径点进行可行性检查。
+  #如果设置为 1，可能会加快规划速度，但是会导致规划出的轨迹可能存在撞墙等问题，因此需要谨慎使用。
+
+  # Robot
+  ###############################################################################################
+
+
+  max_vel_x:             10               #9.0 速度最大限制
+  max_vel_x_backwards:   0.8                  #1.0
+  max_vel_theta:         3                #4.0最大角速度约束(r = v / omega)   
+  max_vel_y:             10
+  acc_lim_x:             0.4                #3.0 最大加速度约束
+  acc_lim_y:             1.6
+  acc_lim_theta:         3.1415925                 #3.0 角加速度约束
+  min_turning_radius:    0.0                 #0.4 最小转弯半径--最大转角
+ 
+
+  ##############################################################################################
+  ##############################################################################################
+  footprint_model:
+      footprint_model:
+      type: "polygon"
+      # vertices: [[0.175, -0.130], [0.175, 0.130],[-0.175, 0.130], [-0.175, -0.130]]
+      vertices: [[0.1, -0.0500], [0.1, 0.050],[-0.1, 0.050], [-0.1, -0.050]]
+      # type: "line"
+      # line_start: [-0.17, 0.0]
+      # line_end: [0.17, 0.0]
+      #  type: "point"
+    #                                              #在无障碍空间仍不走直线可将其设置为较小的正数
+  ##########################################################################################################################
+  #                                                                                                                          #
+  #   footprint_model: # types: "point", "circular", "two_circles", "line", "polygon"                                        #
+  #   type: "polygon"                                                                                                        #
+  #   radius: 0.36 # for type "circular"                                                                                     #
+  #   line_start: [-0.3, 0.0] # for type "line"                                                             线模型起始坐标     #
+  #   line_end: [0.3, 0.0] # for type "line"                                                                线模型尾部坐标     #
+  #   front_offset: 0.2 # for type "two_circles"                                                            前圆心坐标        #
+  #   front_radius: 0.2 # for type "two_circles"                                                            前圆半径          #
+  #   rear_offset: 0.2 # for type "two_circles"                                                             后圆心坐标        #
+  #   rear_radius: 0.2 # for type "two_circles"                                                             后圆半径          #
+  #   vertices: [ [0.171, -0.128], [0.171, 0.128], [-0.171, 0.128], [-0.171, -0.128] ] # for type "polygon" 多边形边界点      #   
+  #                                                                                                                         #
+  #########################################################################################################################
+  #########################################################################################################################
+
+
+  # GoalTolerance
+  xy_goal_tolerance:      0.05               #（default:0.2 minimum 0.001 maximum 0.2）目标位置的误差容限。如果模型频繁进行位置调整，可以尝试减小此参数。
+  yaw_goal_tolerance:     0.1                #（偏航）目标角度的误差容限。如果模型频繁进行方向调整，可以尝试减小此参数。
+  free_goal_vel: False                       #允许机器人以最大速度驶向目的地，为False时，车到达终点时的目标速度为0；
+  complete_global_plan:   false
+
+
+
+  # #关于避障
+  #  obstacle_proximity_ratio_max_vel: 0.0
+  #  obstacle_proximity_lower_bound: 0.0
+  #  obstacle_proximity_upper_bound: 0.0
+  #  weight_velocity_obstacle_ratio: 0.0
+
+
+  # Obstacles
+      
+  min_obstacle_dist: 0.23                    #（default:0.5  0.0~10.0）必须与局部耗散地图中的值一致
+  inflation_dist:    0.05                    #
+
+  include_costmap_obstacles: True            #探测建图时不存在的障碍物，使用这个就不要选择非常小的成本图分辨率，因为这会增加计算时间
+  costmap_obstacles_behind_robot_dist: 0.5   #限制在机器人背后进行规划时要考虑的已占用本地成本图障碍（以米为单位指定距离）
+  obstacle_poses_affected:   25              #20障碍物位置与轨迹上最接近的姿态相连，
+                                              #以减少计算量，但同时也考虑了许多相邻的障碍物
+
+  costmap_converter_plugin: ""
+  costmap_converter_spin_thread: True  
+  costmap_converter_rate: 5                  #定义costmap_converter插件处理当前成本图的频率(该值不应该比成本图更新速率高太多)[Hz]。
+
+  include_dynamic_obstacles:  True           #是否将动态障碍物预测为速度模型
+  dynamic_obstacle_inflation_dist:   0.02    #动态障碍物的膨胀范围，动态障碍物的预测位置周围的缓冲区的惩罚成本非零
+                                              #（应大于min_obstacle_dist才能生效）
+
+  ##############################################################################################################
+  # Optimization                                                                                               #
+  #  no_inner_iterations: 5                                                                                     #
+  #  no_outer_iterations: 4                                                                                     #
+  #  optimization_activate: True                                                                                #
+  #  optimization_verbose: False                                                                                #
+  #  penalty_epsilon: 0.1
+  #  obstacle_cost_exponent: 4                                                                                  #
+  #  weight_max_vel_x: 2                                                                                        #
+  #  weight_max_vel_y: 2                                                                                        #
+  #  weight_max_vel_theta: 1
+  #  weight_acc_lim_x: 1
+  #  weight_acc_lim_y: 1                                                                                        #
+  #  weight_acc_lim_theta: 1
+  #  weight_kinematics_nh: 1 # WE HAVE A HOLONOMIC ROBOT, JUST ADD A SMALL PENALTY                               #
+  #  weight_kinematics_forward_drive: 1                   
+  #  weight_kinematics_turning_radius: 1                  #
+  #  weight_optimaltime: 1 # must be > 0                  #
+  #  weight_shortest_path: 0                              #
+  #  weight_obstacle: 100                                 #                                                      #
+  #  weight_inflation: 0.2                                #
+  #  weight_dynamic_obstacle: 10                          #                                                      #
+  #  weight_dynamic_obstacle_inflation: 0.2               #                                                      #
+  #  weight_viapoint: 1                                                                                          #
+  #  weight_adapt_factor: 2                               #=
+  ################################################################################################################
+  #以下参数为优化时的权重
+  no_inner_iterations:       3
+  no_outer_iterations:       2
+  optimization_activate:     True
+  optimization_verbose:      false        
+  # 该参数接受一个整数值，指定优化期间打印的信息级别    
+  #如果将该参数设置为0，将只打印最终路径的信息，即起点、终点和路径点。
+  #如果将该参数设置为1，除了最终路径信息外，还会打印其他路径信息，如初始和最终时间、路径长度和时间等。
+  #如果将该参数设置为2，将打印所有优化阶段的详细信息，包括边界值、可行性和目标函数等。       
+  penalty_epsilon:           0.2              #为硬约束近似的惩罚函数添加一个小的安全范围
+  obstacle_cost_exponent:    4
+
+  weight_max_vel_x:          2
+  weight_acc_lim_x:          2               #满足最大允许平移加速度的优化权重
+
+  weight_max_vel_theta:      1              #满足最大允许角速度的优化权重
+  weight_acc_lim_theta:      1               #满足最大允许角加速度的优化权重
+
+  weight_kinematics_nh:      200               #运动学的优化权重,
+  weight_kinematics_forward_drive:   100        #强制机器人仅选择正向（正的平移速度）的优化权重。大幅增加可禁止规划倒车 
+  weight_kinematics_turning_radius:  0         #90优化权重，以实现最小转弯半径
+
+  weight_optimaltime:         5                # must be > 0
+  weight_shortest_path:      0.0
+
+  weight_obstacle:           50                #优化权重以保持与障碍物的最小距离
+  weight_inflation:          0.25               
+  #是用于调节代价地图膨胀因子的参数，代价地图是在机器人的坐标系中表示的，膨胀因子越大，代价地图中的障碍物区域越大，机器人离障碍物越远，路径规划就越倾向于绕路而不是穿过障碍物。如果 weight_inflation 设置得太小，机器人可能会沿着代价地图中的缺口穿过障碍物，导致路径规划不准确。
+  #通常情况下，weight_inflation 取值范围在 0 到 1 之间，建议根据实际场景和机器人大小进行调整，可以从小到大逐渐增加，观察路径规划效果，直到满意为止。
+  #通胀惩罚的优化权重（应该很小）
+  weight_dynamic_obstacle:   2.0              # not in use yet
+                                              #动态障碍物的膨胀范围，动态障碍物的预测位置周围的缓冲区的惩罚成本非零
+
+  weight_dynamic_obstacle_inflation: 2  
+  #增加weight_dynamic_obstacle_inflation参数的值，以更加关注动态障碍物的影响，从而减少路径与障碍物的接触。
+                                              #优化过程中，和动态障碍物膨胀区的权重
+                                              #是TebLocalPlanner中一个与动态障碍物有关的参数，它决定了动态障碍物对路径规划的影响程度。具体来说，TebLocalPlanner中的代价函数分为三部分：静态障碍物代价、动态障碍物代价和目标点代价，而weight_dynamic_obstacle_inflation决定了动态障碍物代价在总代价中的权重。
+                                              #该参数的默认值为1.0，通常情况下可以不用修改，但如果机器人所处的环境中动态障碍物较多，可以适当增大该值，以增强动态障碍物对路径规划的影响程度。相反，如果机器人所处的环境中动态障碍物较少，可以适当减小该值，以减小动态障碍物对路径规划的影响程度。
+  global_plan_viapoint_sep:   0.5             
+  #global_plan_viapoint_sep (double, default: -0.1 (disabled)) 如果为正值，则通过点（via-points ）从全局计划（路径跟踪模式）展开，该值确定参考路径的分辨率（沿着全局计划的每两个连续通过点之间的最小间隔，可以参考参数weight_viapoint来调整大小
+                                              #从全局规划路径中提取的路点的相互距离,间隔多远设置一个point
+  weight_viapoint:           100              #跟踪全据路径的权重
+  weight_adapt_factor:       2                
+  #是TEB局部规划器中的一个参数，用于动态调整不同代价函数的权重。该参数可以控制代价函数权重在规划过程中的自适应调整速率，它的值越大，权重就会越快地适应。其默认值为0.5。
+                                              #在每次外部TEB迭代中，一些特殊权重（当前为“ weight_obstacle”）会以此因子重复缩放（weight_new：weight_old * factor）； 
+    #                                         #迭代地增加权重而不是设置较大的先验值会导致底层优化问题的更好的数值条件。
+
+
+
+
+
+
+  # Homotopy Class Planner
+  # 独特拓扑中的并行规划
+  enable_homotopy_class_planning: false
+  enable_multithreading: false                 #允许多线程并行处理
+  max_number_classes: 2                        #允许的线程数
+  selection_cost_hysteresis: 1.0               #指定新候选人必须有多少轨迹成本 先前选择的轨迹以进行选择（如果new_cost <old_cost * factor则选择）
+  selection_prefer_initial_plan: 0.95          #为初始计划的等价类中的轨迹指定在区间(0,1)中的成本降低。
+  selection_obst_cost_scale: 100.0             # 
+  selection_alternative_time_cost: False              
+
+  roadmap_graph_no_samples:  20              #如果simple_exploration被turend关闭，请指定为创建路线图图而生成的示例数量
+  roadmap_graph_area_width:  5               #指定采样区域在开始和目标[m]之间的宽度(高度等于开始和目标的距离)
+  roadmap_graph_area_length_scale:   1.0     #矩形区域的长度取决于起点和目标之间的距离。 此参数进一步缩放距离，以使几何中心保持相等！
+  h_signature_prescaler:     0.5             #仅当您在本地成本图中观察到障碍物过多的问题时，才减小此参数
+                                              #请勿将其选择得太低，否则障碍物无法彼此区分（0.2 < 值 <= 1）
+  h_signature_threshold:     0.1             #如果实部和复部的差都低于规定的阈值，则假定两个h签名相等。
+  obstacle_heading_threshold:        0.85    #在障碍物航向和目标航向之间指定标量乘积的值
+                                              #以便将它们（障碍物）考虑在内进行探索
+  switching_blocking_period:         0.0     #指定允许切换到新的等效类之前需要终止的持续时间（以秒为单位）
+  viapoints_all_candidates: true
+  delete_detours_backwards: true
+  max_ratio_detours_duration_best_duration: 3.0
+  visualize_hc_graph: false
+  visualize_with_time_as_z_axis_scale: false
+
+
+  # Recovery
+
+  oscillation_recovery:  true
+  oscillation_v_eps:     0.1
+  oscillation_omega_eps: 0.1
+  oscillation_recovery_min_duration: 10  
+  oscillation_filter_duration: 10
+
+

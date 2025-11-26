@@ -1,0 +1,20 @@
+/**
+ * @mainpage tf2_bullet 包概述
+ *
+ * @htmlinclude manifest.html
+ *
+ * \b tf2_bullet 包含用于在 geometry_msgs 和 Bullet 数据类型之间进行转换的函数。
+ *
+ * 该库实现了 tf/convert.h 中指定的模板转换接口。
+ * 它能够轻松地将 geometry_msgs 的 Transform 和 Point 类型转换为
+ * Bullet 物理引擎 API 指定的类型（参见 http://bulletphysics.org）。
+ *
+ * 有关 tf2 中数据类型转换的更多信息，请参阅 <A HREF="http://wiki.ros.org/tf2/Tutorials/Migration/DataConversions">转换概述</A>
+ * Wiki 页面。
+ *
+ * \section codeapi 代码 API
+ *
+ * 该库仅包含一个头文件：tf2_bullet/tf2_bullet.h，其中主要包含
+ * tf2/convert.h 中定义的模板函数的特化。
+ *
+ */

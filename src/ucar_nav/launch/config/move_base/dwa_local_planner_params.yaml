@@ -1,0 +1,167 @@
+# `dwa_local_planner_params.yaml` 文件说明文档
+
+# DWA (Dynamic Window Approach) 局部规划器参数配置。
+# `dwa_local_planner` 提供一个能够驱动底座的控制器，该控制器连接了路径规划器和机器人。
+# 使用地图，规划器产生从起点到目标点的运动轨迹，在移动时，规划器在机器人周围产生一个函数，
+# 用网格地图表示。控制器的工作就是利用这个函数来确定发送给机器人的速度 `dx`, `dy`, `dtheta`。
+#
+#       >> DWA 算法的基本思想 <<
+#  1. 在机器人控制空间离散采样 (`dx`, `dy`, `dtheta`)。
+#  2. 对每一个采样的速度进行前向模拟，看看在当前状态下，使用该采样速度移动一小段时间后会发生什么。
+#  3. 评价前向模拟得到的每个轨迹，是否接近障碍物，是否接近目标，是否接近全局路径以及速度等等。舍弃非法路径。
+#  4. 选择得分最高的路径，发送对应的速度给底座。
+#
+#  DWA 与 Trajectory Rollout 的区别主要是在机器人的控制空间采样差异。Trajectory Rollout 采样点来源于整个
+#  前向模拟阶段所有可用速度集合，而 DWA 采样点仅仅来源于一个模拟步骤中的可用速度集合。这意味着相比之下，
+#  DWA 是一种更加有效算法，因为其使用了更小采样空间；然而对于低加速度的机器人来说可能 Trajectory Rollout 更好，
+#  因为 DWA 不能对常加速度做前向模拟。
+#
+#  下面来依次介绍下每个参数的意义:
+#   * `acc_lim_x`: x 方向的加速度绝对值。
+#   * `acc_lim_y`: y 方向的加速度绝对值，该值只有全向移动的机器人才需配置。
+#   * `acc_lim_th`: 旋转加速度的绝对值。
+#
+#   * `max_trans_vel`: 平移速度最大值绝对值。
+#   * `min_trans_vel`: 平移速度最小值的绝对值。
+#
+#   * `max_vel_x`: x 方向最大速度的绝对值。
+#   * `min_vel_x`: x 方向最小值绝对值，如果为负值表示可以后退。
+#   * `max_vel_y`: y 方向最大速度的绝对值。
+#   * `min_vel_y`: y 方向最小速度的绝对值。
+#
+#   * `trans_stopped_vel`: 停止的时候，最大的平移速度。
+#   * `theta_stopped_vel`: 停止的时候，最大角速度。
+#
+#   * `max_rot_vel`: 最大旋转速度的绝对值。
+#   * `min_rot_vel`: 最小旋转速度的绝对值。
+#
+#   * `yaw_goal_tolerance`: 到达目标点时偏行角允许的误差，单位弧度。
+#   * `xy_goal_tolerance`: 到达目标点时，在 xy 平面内与目标点的距离误差。
+#   * `latch_xy_goal_tolerance`: 设置为 `true`，如果到达容错距离内，机器人就会原地
+#        旋转，即使转动是会跑出容错距离外。
+#
+#   * `sim_time`: 向前仿真轨迹的时间。
+#   * `sim_granularity`: 步长，轨迹上采样点之间的距离，轨迹上点的密集程度。
+#   * `vx_samples`: x 方向速度空间的采样点数。
+#   * `vy_samples`: y 方向速度空间采样点数。
+#   * `vth_samples`: 旋转方向的速度空间采样点数。
+#   * `controller_frequency`: 发送给底盘控制移动指令的频率。
+#
+#   * `path_distance_bias`: 定义控制器与给定路径接近程度。
+#   * `goal_distance_bias`: 定义控制器与局部目标点的接近程度。
+#   * `occdist_scale`: 定义控制器躲避障碍物的程度。
+#   * `stop_time_buffer`: 为防止碰撞，机器人必须提前停止的时间长度。
+#   * `scaling_speed`: 启动机器人底盘的速度。
+#   * `max_scaling_factor`: 最大缩放参数。
+#
+#   * `publish_cost_grid`: 是否发布规划器在规划路径时的代价网格。如果设置为 `true`，
+#       那么就会在 `~/cost_cloud` 话题上发布 `sensor_msgs/PointCloud2` 类型消息。
+#       每个点云代表代价网格，并且每个单独的评价函数都有一个字段及其每个单元
+#       的总代价，并考虑评分参数。
+#   
+#   * `oscillation_reset_dist`: 机器人运动多远距离才会重置振荡标记。
+#   
+#   * `prune_plan`: 机器人前进时是否清除身后 1m 外的轨迹。
+
+# 是否在到达 xy 容忍度后锁定目标，即使旋转超出容忍度也不再进行 xy 移动。
+latch_xy_goal_tolerance: true
+
+DWAPlannerROS:
+  # 机器人配置参数
+  # x 方向的加速度限制。
+  acc_lim_x: 1.5
+  # y 方向的加速度限制（全向移动机器人使用）。
+  acc_lim_y: 0.3
+  # 旋转加速度限制。
+  acc_lim_th: 0.3
+
+  # max_trans_vel: 0.4 # 平移速度最大值，略低于机器人实际能力。
+  # min_trans_vel: 0.1 # 平移速度最小值，当旋转速度可忽略时。
+
+  # 最大平移速度。
+  max_vel_trans: 1.0 
+  # 最小平移速度，可以为负值表示允许后退。
+  min_vel_trans: -0.1 
+
+  # 停止时的最大平移速度。
+  trans_stopped_vel: 0.1
+  # 停止时的最大角速度。
+  theta_stopped_vel: 0.1
+
+  # x 方向最大速度。
+  max_vel_x: 1.5
+  # x 方向最小速度。
+  min_vel_x: -1.5
+  # y 方向最大速度（差分驱动机器人通常为 0）。
+  max_vel_y: 0.2  
+  # y 方向最小速度（差分驱动机器人通常为 0）。
+  min_vel_y: -0.2
+
+  # max_rot_vel: 0.5  # 最大旋转速度，略低于机器人实际能力。
+  # min_rot_vel: 0.1  # 最小旋转速度，当平移速度可忽略时。
+
+  # 最大角速度。
+  max_vel_theta: 0.7  
+  # 最小角速度。
+  min_vel_theta: -0.7  
+
+
+  # 目标容忍度参数
+  # 到达目标点时偏航角允许的误差（弧度）。
+  yaw_goal_tolerance: 0.1  # 0.1 弧度约等于 5.7 度。
+  # 到达目标点时，在 xy 平面内与目标点的距离误差。
+  xy_goal_tolerance: 0.3
+  # 是否在到达 xy 容忍度后锁定目标，即使旋转超出容忍度也不再进行 xy 移动。
+  latch_xy_goal_tolerance: true
+
+  # 前向仿真参数
+  # 向前仿真轨迹的时间（秒）。
+  sim_time: 1.0    # 建议值 1.7。
+  # 仿真步长，轨迹上采样点之间的距离，影响轨迹的密集程度。
+  sim_granularity: 0.025
+  # x 方向速度空间的采样点数。
+  vx_samples: 3    # 默认值 3。
+  # y 方向速度空间采样点数（差分驱动机器人通常为 0）。
+  vy_samples: 0    
+  # 旋转方向的速度空间采样点数。
+  vth_samples: 7  # 建议值 20。
+  # 发送给底盘控制移动指令的频率（Hz）。
+  controller_frequency: 5.0
+
+  # 轨迹评分参数
+  # 路径距离偏差：定义控制器与给定全局路径的接近程度的权重。
+  path_distance_bias: 32.0  # 建议值 32.0。
+  # 目标距离偏差：定义控制器与局部目标点的接近程度的权重。
+  goal_distance_bias: 20.0  # 建议值 24.0。
+  # 障碍物距离缩放：定义控制器躲避障碍物的程度的权重。
+  occdist_scale: 0.02 # 建议值 0.2 或 0.01。
+  # 前向点距离：在轨迹上放置额外评分点的位置，用于评估轨迹。
+  forward_point_distance: 0.125 # 建议值 0.325。
+  # 停止时间缓冲：为防止碰撞，机器人必须提前停止的时间长度。
+  stop_time_buffer: 0.2     # 建议值 0.2。
+  # 缩放速度：机器人开始缩放足迹的绝对速度。
+  scaling_speed: 0.20       # 建议值 0.25。
+  # 最大缩放因子：当机器人达到一定速度时，足迹的最大缩放比例。
+  max_scaling_factor: 0.2   # 建议值 0.2。
+  # 是否发布代价网格：如果设置为 `true`，会在 `~/cost_cloud` 话题上发布 `sensor_msgs/PointCloud2` 消息，显示规划器在规划路径时的代价网格。
+  publish_cost_grid: false
+
+  # 振荡预防参数
+  # 振荡重置距离：机器人运动多远距离才会重置振荡标记，以避免机器人原地打转。
+  oscillation_reset_dist: 0.05  # 默认值 0.05。
+
+  # 全局和局部角度判断的缩放因子。
+  hdiff_scale: 1.0 
+  # 航向点数量。
+  heading_points: 1
+
+  # 全局规划参数
+  # 是否清除身后 1m 外的轨迹，以优化内存使用。
+  prune_plan: true
+
+  # 是否发布轨迹点云。
+  publish_traj_pc : false
+  # 是否发布代价网格点云。
+  publish_cost_grid_pc: false
+  # 全局坐标系 ID。
+  global_frame_id: map

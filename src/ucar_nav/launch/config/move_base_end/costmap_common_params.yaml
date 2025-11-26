@@ -1,0 +1,45 @@
+# 这个文件主要用于配置基本的参数，这些参数会被用于local_costmap和global_costmap。
+# 更多信息请参考: <mcurl name="navigation/Tutorials/RobotSetup" url="http://wiki.ros.org/navigation/Tutorials/RobotSetup"></mcurl>
+
+# 定义了将要向代价地图（costmap）传递信息的传感器列表。
+# 设定导航包所使用的传感器发布的话题，同时作为以下的命名空间。
+observation_sources: scan
+# `scan` 参数配置了激光雷达传感器的数据类型、话题以及是否用于标记和清除代价地图中的障碍物。
+# `data_type`: 传感器数据类型，例如 `LaserScan`。
+# `topic`: 传感器发布数据的话题名称，例如 `/scan`。
+# `marking`: 是否使用传感器数据来在代价地图中标记（添加）障碍物。
+# `clearing`: 是否使用传感器数据来在代价地图中清除（移除）障碍物。
+scan: {data_type: LaserScan, topic: /scan, marking: true, clearing: true}
+
+# `obstacle_range`: 将障碍物插入代价地图的最大范围（米）。
+# 如果检测到一个距离小于此值的障碍物，就会将这个障碍物引入到代价地图中。
+obstacle_range: 2.2
+
+# `raytrace_range`: 从地图中扫描出障碍物的最大范围（米）。
+# 实时观察此范围内代价地图中的障碍物，用于清除不再存在的障碍物。
+raytrace_range: 6
+
+# `cost_scaling_factor`: 代价比例系数。
+# 值越大，则代价值越小，机器人会更倾向于远离障碍物。
+cost_scaling_factor: 21 #36
+
+# 将机器人的几何参数告诉导航功能包集。
+# `footprint`: 定义机器人形状的多边形面积，通常用于精确的碰撞检测。
+# `robot_radius`: 定义机器人形状的圆形半径，当 `footprint` 未定义时使用。
+# footprint: [[0.175, 0.12], [-0.175, 0.12], [-0.175, -0.12], [0.175, -0.12]]
+robot_radius: 0.125
+# `transform_tolerance`: 等待坐标变换（TF）发布信息的超时时间（秒）。
+# 如果在指定时间内无法获取到必要的坐标变换，则会报错。
+transform_tolerance: 2 
+# `inflation_radius`: 膨胀半径（米）。
+# 在障碍物周围扩展一个代价区域，给定机器人与障碍物之间必须要保持的最小距离。
+inflation_radius: 0.16
+# `resolution`: 代价地图的精度，即每个网格单元的尺寸（米/单元）。
+resolution: 0.01
+
+# `map_type`: 代价地图的类型。通常设置为 `costmap`。
+map_type: costmap
+
+
+
+

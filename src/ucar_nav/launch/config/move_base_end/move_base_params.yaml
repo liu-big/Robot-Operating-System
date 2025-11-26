@@ -1,0 +1,32 @@
+# `shutdown_costmaps`: 是否在 `move_base` 节点关闭时同时关闭代价地图节点。
+shutdown_costmaps: false
+# `controller_frequency`: 控制周期和发布速度指令的频率（Hz）。
+# 决定了局部规划器和控制器多久更新一次并发布速度指令。
+controller_frequency: 20.0
+# `planner_patience`: 等待全局规划的最长时间（秒）。
+# 如果在此时间内无法找到有效路径，则会触发恢复行为。
+planner_patience: 5.0
+# `controller_patience`: 等待局部控制指令的最长时间（秒）。
+# 如果在此时间内无法生成有效的局部控制指令，则会触发恢复行为。
+controller_patience: 15.0
+# `conservative_reset_dist`: 障碍物距离。
+# 当机器人被困住时，执行保守重置行为时，清除障碍物的距离。
+#conservative_reset_dist: 2.0
+# `planner_frequency`: 全局规划（global planning）的运行频率（Hz）。
+# 决定了全局规划器多久重新计算一次全局路径。
+planner_frequency: 5.0
+# `oscillation_timeout`: 恢复行为中，判断机器人是否发生震荡的超时时间（秒）。
+# 如果机器人在此时间内没有显著移动，则可能被认为是震荡。
+oscillation_timeout: 5.0
+# `oscillation_distance`: 恢复行为中，判断机器人是否发生震荡的有效移动距离（米）。
+# 如果机器人在 `oscillation_timeout` 时间内移动距离小于此值，则被认为是震荡。
+oscillation_distance: 0.01
+# `recovery_behavior_enabled`: 指定 `move_base` 中是否允许在遇到障碍物时，进行恢复行为。
+# 恢复行为包括原地旋转、清除代价地图等，用于帮助机器人脱离困境。
+recovery_behavior_enabled: false
+# `clearing_rotation_allowed`: 指定 `move_base` 中是否允许在遇到障碍物时，进行清除障碍物的旋转行为。
+# 这是一种恢复行为，机器人会原地旋转以清除周围的障碍物信息。
+clearing_rotation_allowed: true
+
+
+

@@ -1,0 +1,37 @@
+<!--
+  remap_tf.launch
+
+  Copyright (c) 2023. All rights reserved.
+
+  这是一个ROS启动文件，用于重新映射tf（Transform Frame）消息。
+  它启动一个tf_remap节点，该节点可以根据配置将旧的tf话题名称映射到新的名称。
+-->
+<launch>
+  <!--
+    ROS节点定义。
+    pkg: 指定节点所属的ROS包，这里是'tf'。
+    type: 指定要运行的可执行文件类型，这里是'tf_remap'，它是一个用于tf话题重映射的工具。
+    name: 为节点指定一个唯一的名称，这里是'tf_remapper'。
+    output: 指定节点的输出方式，'screen'表示将节点的标准输出打印到终端。
+  -->
+  <node pkg="tf" type="tf_remap" name="tf_remapper" output="screen">
+    <!--
+      rosparam标签用于加载ROS参数服务器的参数。
+      param: 指定参数的名称，这里是'mappings'。
+      'mappings'参数是一个列表，其中每个元素定义了一个重映射规则。
+      每个规则包含两个键值对：
+        - old: 原始的tf话题名称。
+        - new: 目标tf话题名称。
+      
+      示例:
+        - {old: "/asdf", new: "/a"}  将"/asdf"重映射到"/a"
+        - {old: "/fdsa", new: "/b"}  将"/fdsa"重映射到"/b"
+    -->
+    <rosparam param="mappings">
+      - {old: "/asdf",
+         new: "/a"}
+      - {old: "/fdsa",
+         new: "/b"}
+    </rosparam>
+  </node>
+</launch>

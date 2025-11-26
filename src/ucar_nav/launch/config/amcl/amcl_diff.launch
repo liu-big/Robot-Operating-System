@@ -1,0 +1,76 @@
+<launch>
+  <!-- AMCL (Adaptive Monte Carlo Localization) 节点配置，适用于差分驱动机器人 -->
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <!-- 发布最佳姿态的扫描，最大频率为10Hz -->
+    <!-- 里程计运动模型类型，diff表示差分驱动机器人 -->
+    <param name="odom_model_type" value="diff"/>
+    <!-- 运动模型参数，用于里程计的第五个参数 -->
+    <param name="odom_alpha5" value="0.1"/>
+    <!-- TF变换的容忍时间，用于等待TF变换可用 -->
+    <param name="transform_tolerance" value="0.2" />
+    <!-- GUI发布频率，用于RViz等可视化工具更新频率 -->
+    <param name="gui_publish_rate" value="10.0"/>
+    <!-- 激光雷达扫描束的最大数量，用于减少计算量 -->
+    <param name="laser_max_beams" value="12"/>
+    <!-- 最小粒子数 -->
+    <param name="min_particles" value="1000"/>
+    <!-- 最大粒子数 -->
+    <param name="max_particles" value="10000"/>
+    <!-- KLD采样误差阈值 -->
+    <param name="kld_err" value="0.05"/>
+    <!-- KLD采样Z值 -->
+    <param name="kld_z" value="0.99"/>
+    <!-- 运动模型参数：里程计平移运动的旋转误差 -->
+    <param name="odom_alpha1" value="0.2"/>
+    <!-- 运动模型参数：里程计旋转运动的平移误差 -->
+    <param name="odom_alpha2" value="0.2"/>
+    <!-- 运动模型参数：里程计平移运动的平移误差 -->
+    <param name="odom_alpha3" value="0.8"/>
+    <!-- 运动模型参数：里程计旋转运动的旋转误差 -->
+    <param name="odom_alpha4" value="0.2"/>
+    <!-- 激光模型参数：击中点的Z值 -->
+    <param name="laser_z_hit" value="0.5"/>
+    <!-- 激光模型参数：短距离Z值 -->
+    <param name="laser_z_short" value="0.05"/>
+    <!-- 激光模型参数：最大Z值 -->
+    <param name="laser_z_max" value="0.05"/>
+    <!-- 激光模型参数：随机Z值 -->
+    <param name="laser_z_rand" value="0.5"/>
+    <!-- 激光模型参数：击中点的标准差 -->
+    <param name="laser_sigma_hit" value="0.2"/>
+    <!-- 激光模型参数：短距离的lambda值 -->
+    <param name="laser_lambda_short" value="0.1"/>
+    <!-- 激光模型参数：短距离的lambda值（重复） -->
+    <param name="laser_lambda_short" value="0.1"/>
+    <!-- 激光模型类型，beam表示束模型 -->
+    <param name="laser_model_type" value="beam"/>
+    <!-- 激光模型参数：似然场最大距离 -->
+    <param name="laser_likelihood_max_dist" value="2.0"/>
+    <!-- 最小平移更新距离 -->
+    <param name="update_min_d" value="0.2"/>
+    <!-- 最小旋转更新角度 -->
+    <param name="update_min_a" value="0.5"/>
+    <!-- 里程计坐标系ID -->
+    <param name="odom_frame_id"   value="odom"/>
+    <!-- 重采样间隔 -->
+    <param name="resample_interval" value="1"/>
+    <!-- TF变换容忍时间 -->
+    <param name="transform_tolerance" value="0.1"/>
+    <!-- 慢速恢复的alpha值 -->
+    <param name="recovery_alpha_slow" value="0.0"/>
+    <!-- 快速恢复的alpha值 -->
+    <param name="recovery_alpha_fast" value="0.0"/>
+    <!-- 里程计默认使用的坐标系 -->
+    <!-- <param name="odom_frame_id"   value="odom"/> -->
+    <!-- 用作机器人的基坐标系 -->
+    <!-- <param name="base_frame_id"   value="base_link"/> -->
+    <!-- 由定位系统发布的坐标系名称 -->
+    <!-- <param name="global_frame_id" value="map"/> -->
+    <!-- 激光雷达扫描的frame_id -->
+    <!-- <param name="scan_frame_id" value="laser_frame"/> -->
+    <!-- 扫描话题名称 -->
+    <!-- <param name="scan_topic" value="scan"/>  -->
+    <!-- 将scan话题重映射到lidar/scan -->
+    <!-- <remap from="scan"  to="lidar/scan"/> -->
+  </node>
+</launch>

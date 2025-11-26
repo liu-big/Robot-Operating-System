@@ -1,0 +1,35 @@
+<!-- package.xml是ROS包的清单文件，定义了包的元数据、依赖项等信息 -->
+<package>
+  <!-- 包的名称 -->
+  <name>tf2_tools</name>
+  <!-- 包的版本号 -->
+  <version>0.6.5</version>
+  <!-- 包的简要描述 -->
+  <description>
+    tf2_tools
+  </description>
+  <!-- 包的作者 -->
+  <author>Wim Meeussen</author>
+  <!-- 包的维护者及其邮箱 -->
+  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
+  <!-- 包的许可证，通常是BSD、MIT、Apache 2.0等 -->
+  <license>BSD</license>
+
+  <!-- 包的官方网站或ROS Wiki页面URL -->
+  <url type="website">http://www.ros.org/wiki/tf2_tools</url>
+    
+  <!-- 构建工具依赖，这里指定catkin -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- 构建依赖项，这些包在编译时需要 -->
+  <build_depend>tf2_msgs</build_depend>
+  <build_depend>tf2</build_depend>
+  <build_depend>tf2_ros</build_depend>
+ 
+  <!-- 运行时依赖项，这些包在运行时需要 -->
+  <run_depend>tf2_msgs</run_depend>
+  <run_depend>tf2</run_depend>
+  <run_depend>tf2_ros</run_depend>
+
+</package>
+

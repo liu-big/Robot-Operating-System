@@ -1,0 +1,30 @@
+GlobalPlanner:
+  # 是否允许规划器在未知区域进行路径规划。设置为true表示允许，false表示不允许。
+  allow_unknown: true
+  # 默认的容忍度，用于路径规划中的一些计算，例如目标点附近的误差容忍。
+  default_tolerance: 0.05
+  # 是否使用Dijkstra算法进行全局路径规划。Dijkstra算法可以找到最短路径。
+  use_dijkstra: true
+  # 是否使用网格路径（grid path）。如果设置为true，规划器将尝试沿着网格线规划路径。
+  use_grid_path: false
+  # 是否使用旧版navfn的行为。navfn是ROS中一个常用的全局路径规划器。
+  old_navfn_behavior: false
+
+  # 是否可视化势场（potential field）。势场用于引导机器人避开障碍物并 menuju 目标。
+  visualize_potential: false
+  # 是否发布势场信息。发布后可以在RViz等工具中查看。
+  publish_potential: true
+
+  # 致命障碍物的代价。当代价地图中的某个单元格的代价达到或超过此值时，被认为是致命障碍物，机器人不能通过。
+  lethal_cost: 253 #253
+  # 中性区域的代价。这是非障碍物区域的默认代价，通常用于表示可以通过但有一定成本的区域。
+  neutral_cost: 50.0 #10.0
+  # 代价因子。用于调整代价地图中障碍物代价的影响程度。值越大，障碍物的影响越大。
+  cost_factor: 0.55 #3.2
+
+  # 机器人朝向模式。0表示不考虑朝向，1表示考虑朝向，2表示考虑朝向并进行平滑处理。
+  orientation_mode: 0
+  # 朝向窗口大小。在计算机器人朝向时，考虑的路径点的数量。
+  orientation_window_size: 1
+
+

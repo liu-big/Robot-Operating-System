@@ -1,0 +1,26 @@
+# 局部代价地图配置
+local_costmap:
+  # 全局坐标系ID，通常设置为 "map"，表示地图坐标系
+  global_frame: map
+  # 机器人底座坐标系ID，通常设置为 "base_link"
+  robot_base_frame: base_link
+  # 代价地图的更新频率（Hz），决定了地图更新的速率
+  update_frequency: 10
+  # 代价地图的发布频率（Hz），决定了地图发布的速率
+  publish_frequency: 5.0
+
+  # 是否使用静态地图。如果设置为 true，代价地图会根据 map_server 提供的地图信息进行初始化。
+  # 如果不需要使用已有的地图或者 map_server，最好将该参数设置为 false。
+  static_map: false
+  # 是否使用滚动窗口。如果设置为 true，局部代价地图会随着机器人的移动而滚动，保持机器人始终在地图中心。
+  # 默认为 false，在静态的全局地图中，地图不会变化。
+  rolling_window: true
+  # 局部代价地图的宽度（米）
+  width: 2.0
+  # 局部代价地图的高度（米）
+  height: 2.0
+
+  # 代价比例因子，用于调整障碍物对路径规划的惩罚程度，值越大，障碍物附近代价越高
+  cost_scaling_factor: 3 #36
+  # 膨胀半径，机器人周围障碍物膨胀的距离，用于避免机器人与障碍物发生碰撞
+  inflation_radius: 0.08

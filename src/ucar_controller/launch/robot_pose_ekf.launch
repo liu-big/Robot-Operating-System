@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- robot_pose_ekf.launch文件用于启动robot_pose_ekf节点，该节点通过融合里程计、IMU和视觉里程计数据来估计机器人的位姿。 -->
+<!-- 文件中配置了输出坐标系、机器人基座坐标系、更新频率、传感器超时时间以及各种传感器数据的使用开关。 -->
+<launch>
+
+	<!-- 静态TF发布器示例：如果需要发布base_link和imu之间的静态变换，可以取消注释此行 -->
+	<!-- <node name="base_imu_link" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 /base_link /imu 50"/> -->
+
+	<!-- 启动robot_pose_ekf节点 -->
+	<node pkg="robot_pose_ekf" type="robot_pose_ekf" name="robot_pose_ekf">    
+		<!-- 输出位姿的坐标系，通常设置为odom -->
+		<param name="output_frame" value="odom"/>
+		<!-- 机器人基座的坐标系，通常设置为base_link或base_footprint -->
+		<param name="base_footprint_frame" value="base_link"/>
+		<!-- 估计器的更新频率（Hz） -->
+		<param name="freq" value="20.0"/>
+		<!-- 传感器数据超时时间（秒），如果传感器数据在此时间内未更新，则认为传感器失效 -->
+		<param name="sensor_timeout" value="1.0"/>
+		<!-- 是否使用里程计数据 -->
+		<param name="odom_used" value="true"/>
+		<!-- 是否使用IMU数据 -->
+		<param name="imu_used" value="true"/>
+		<!-- 是否使用视觉里程计数据（此处设置为false） -->
+		<param name="vo_used" value="false"/>
+		<!-- 是否启用调试模式，启用后会输出更多调试信息 -->
+		<param name="debug" value="false"/>
+		<!-- 是否启用自我诊断功能 -->
+		<param name="self_diagnose" value="false"/>
+        <!-- 将IMU数据话题从imu_data重映射到imu -->
+        <remap from="imu_data" to="imu" />
+        <!-- 将里程计话题从odom重映射到wheel_odom -->
+        <remap from="odom" to="wheel_odom" />
+	</node>
+
+	
+</launch>

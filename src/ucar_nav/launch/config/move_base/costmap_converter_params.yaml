@@ -1,0 +1,44 @@
+# `costmap_converter_params.yaml` 文件说明文档
+
+# 代价地图转换器插件配置
+# 用于将代价地图中的障碍物信息转换为其他形式（如多边形、线段），以便局部规划器使用。
+
+# TebLocalPlannerROS 命名空间下的参数
+TebLocalPlannerROS:
+
+  ## 代价地图转换器插件选择
+  # 可以选择不同的插件来实现代价地图到几何形状的转换。
+  # costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSMCCH" # 使用 DBSMCCH 算法将代价地图转换为多边形
+  # costmap_converter_plugin: "costmap_converter::CostmapToLinesDBSRANSAC"   # 使用 DBSRANSAC 算法将代价地图转换为线段
+  costmap_converter_plugin: "costmap_converter::CostmapToLinesDBSMCCH"     # 当前选择：使用 DBSMCCH 算法将代价地图转换为线段
+  # costmap_converter_plugin: "costmap_converter::CostmapToPolygonsDBSConcaveHull" # 使用 DBSConcaveHull 算法将代价地图转换为凹包多边形
+  # costmap_converter_plugin: "" # 禁用插件，不进行代价地图转换
+
+  # 是否在单独的线程中运行代价地图转换器，设置为 `True` 可以避免阻塞主线程。
+  costmap_converter_spin_thread: True
+  # 代价地图转换器的运行频率（Hz）。
+  costmap_converter_rate: 10.0
+
+
+  ## 配置插件参数 (命名空间: move_base/TebLocalPlannerROS/PLUGINNAME)
+  ## 每个插件的参数必须单独添加。
+  # 以下是 `CostmapToLinesDBSRANSAC` 插件的参数配置示例：
+  costmap_converter/CostmapToLinesDBSRANSAC:
+    # 聚类最大距离：用于 DBSCAN 聚类，定义两个点之间的最大距离，以便它们被认为是同一聚类的一部分。
+    cluster_max_distance: 0.5
+    # 聚类最小点数：用于 DBSCAN 聚类，定义一个聚类所需的最小点数。
+    cluster_min_pts: 2
+    # RANSAC 内点距离：RANSAC 算法中，点到模型的最大距离，如果小于此距离则被认为是内点。
+    ransac_inlier_distance: 0.15
+    # RANSAC 最小内点数：RANSAC 算法中，一个有效模型所需的最小内点数。
+    ransac_min_inliers: 10
+    # RANSAC 迭代次数：RANSAC 算法的最大迭代次数。
+    ransac_no_iterations: 2000
+    # RANSAC 剩余外点数：RANSAC 算法结束后，允许保留的剩余外点数量。
+    ransac_remainig_outliers: 3
+    # RANSAC 是否转换外点：是否将 RANSAC 识别出的外点也转换为几何形状。
+    ransac_convert_outlier_pts: True
+    # RANSAC 是否过滤剩余外点：是否过滤掉 RANSAC 结束后剩余的外点。
+    ransac_filter_remaining_outlier_pts: False
+    # 凸包最小点分离距离：用于凸包生成，定义两个点之间的最小分离距离。
+    convex_hull_min_pt_separation: 0.1

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+  @file package.xml
+  @brief ROS包的元数据文件，定义了fdilink_ahrs包的属性、依赖和构建信息。
+
+  该文件遵循ROS的package.xml格式规范，用于描述ROS包的基本信息，
+  包括包名、版本、描述、维护者、许可证以及各种依赖关系。
+  这些信息对于ROS系统的包管理、构建和分发至关重要。
+-->
+<package format="2">
+  <!-- 包的名称，必须是唯一的，且符合ROS包命名规范 -->
+  <name>fdilink_ahrs</name>
+  <!-- 包的版本号，遵循语义化版本控制规范 -->
+  <version>0.0.1</version>
+  <!-- 包的简要描述，说明其功能和用途 -->
+  <description>The fdilink_ahrs package</description>
+
+  <!-- 维护者标签，至少需要一个，可以有多个。每个标签代表一个维护者 -->
+  <!-- 示例： -->
+  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  <maintainer email="jwliang@iflytek.com">iflytek</maintainer>
+
+  <!-- 许可证标签，至少需要一个，可以有多个。常用许可证字符串： -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>TODO</license>
+
+  <!-- 构建工具依赖：指定构建此包所需的构建系统工具 -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <buildtool_depend>genmsg</buildtool_depend>
+  <!-- 构建依赖：指定编译此包的源代码所需的其他ROS包 -->
+  <!-- <build_depend>geometry_msgs</build_depend> -->
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>tf</build_depend>
+  <!-- 构建导出依赖：指定此包的下游消费者在构建时可能需要的依赖 -->
+  <!-- <build_export_depend>geometry_msgs</build_export_depend> -->
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>sensor_msgs</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>tf</build_export_depend>
+  <!-- 执行依赖：指定此包在运行时所需的其他ROS包 -->
+  <!-- <exec_depend>geometry_msgs</exec_depend> -->
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>tf</exec_depend>
+
+
+  <!-- export标签包含其他未指定的标签，用于提供额外信息 -->
+  <export>
+    <!-- 其他工具可以在此处请求放置额外信息 -->
+
+  </export>
+<!-- 消息生成依赖，如果包中定义了自定义消息或服务，则需要这些依赖 -->
+<!-- <build_depend>message_generation</build_depend>
+<build_export_depend>message_generation</build_export_depend>
+<exec_depend>message_runtime</exec_depend> -->
+</package>

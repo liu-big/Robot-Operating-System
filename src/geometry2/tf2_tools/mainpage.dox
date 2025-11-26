@@ -1,0 +1,23 @@
+/**
+\mainpage  # Doxygen主页标签，定义了文档的主页面
+\htmlinclude manifest.html # 包含一个HTML文件，通常用于显示包的元数据
+
+\b tf2_tools is ... # 包的简介，这里可以填写tf2_tools包的具体功能描述
+
+<!-- 
+提供您的包的概述。
+-->
+
+
+\section codeapi Code API # 定义一个名为“Code API”的章节
+
+<!--
+提供指向包内特定自动生成的API文档的链接，这些文档是读者特别感兴趣的。Doxygen会
+文档化您代码的几乎每个部分，所以在这里尽力将读者指向实际的API。
+
+如果您的代码库相当大或有不同的API集，您应该使用doxygen的'group'标签将这些API
+保持在一起。例如，roscpp文档有'libros'组。
+-->
+
+
+*/

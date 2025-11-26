@@ -1,0 +1,14 @@
+<launch>
+  <!-- 基础驱动启动文件 -->
+  <!-- 包含ucar_controller包中的base_driver.launch文件，用于启动机器人底盘驱动 -->
+  <include file="$(find ucar_controller)/launch/base_driver.launch">
+  </include>
+  
+  <!-- 激光雷达驱动启动文件 -->
+  <!-- 包含ydlidar包中的ydlidar.launch文件，用于启动激光雷达传感器 -->
+  <include file="$(find ydlidar)/launch/ydlidar.launch"/>
+  
+  <!-- Gmapping SLAM启动文件 -->
+  <!-- 包含ucar_map包中的gmapping_demo.launch文件，用于启动Gmapping算法进行建图和定位 -->
+  <include file="$(find ucar_map)/launch/gmapping_demo.launch"/>
+</launch>

@@ -1,0 +1,45 @@
+<!-- package.xml是ROS包的清单文件，定义了包的元数据、依赖项等信息 -->
+<package format="2">
+  <!-- 包的名称 -->
+  <name>tf2_sensor_msgs</name>
+  <!-- 包的版本号 -->
+  <version>0.6.5</version>
+  <!-- 包的简要描述 -->
+  <description>
+    Small lib to transform sensor_msgs with tf. Most notably, PointCloud2
+  </description>
+  <!-- 包的作者 -->
+  <author>Vincent Rabaud</author>
+  <!-- 包的维护者及其邮箱 -->
+  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
+  <!-- 包的许可证，通常是BSD、MIT、Apache 2.0等 -->
+  <license>BSD</license>
+
+  <!-- 包的官方网站或ROS Wiki页面URL -->
+  <url type="website">http://www.ros.org/wiki/tf2_ros</url>
+
+  <!-- 构建工具依赖，这里指定catkin，并且版本大于等于0.5.6 -->
+  <buildtool_depend version_gte="0.5.6">catkin</buildtool_depend>
+
+  <!-- 构建依赖项，这些包在编译时需要 -->
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>eigen</build_depend>
+
+  <!-- 运行时依赖项，这些包在运行时需要 -->
+  <depend>sensor_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+
+  <!-- 执行依赖项，通常用于Python脚本或可执行文件 -->
+  <exec_depend>python_orocos_kdl</exec_depend>
+  <exec_depend>rospy</exec_depend>
+
+  <!-- 构建导出依赖项，表示本包的库或头文件会依赖这些包 -->
+  <build_export_depend>eigen</build_export_depend>
+
+  <!-- 测试依赖项，这些包仅在运行测试时需要 -->
+  <test_depend>rostest</test_depend>
+  <test_depend>geometry_msgs</test_depend>
+
+</package>
+

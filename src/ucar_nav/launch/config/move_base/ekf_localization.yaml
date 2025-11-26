@@ -1,0 +1,87 @@
+#Configuation for robot odometry EKF
+# `ekf_localization.yaml` 文件说明文档
+
+# EKF (Extended Kalman Filter) 扩展卡尔曼滤波器配置。
+# 该文件用于配置 `robot_localization` 包中的 `ekf_localization_node`，
+# 通过融合来自不同传感器（如里程计、IMU）的数据，提供更精确的机器人位姿估计。
+
+# 节点更新频率（Hz）。
+frequency: 50
+    
+# 是否启用 2D 模式。如果机器人只在平面上移动，设置为 `true` 可以简化计算。
+two_d_mode: true
+    
+# 是否发布 TF 变换。如果设置为 `true`，节点将发布从 `odom_frame` 到 `base_link_frame` 的 TF 变换。
+publish_tf: false
+ 
+# 坐标系配置。
+# 里程计坐标系。
+odom_frame: odom
+# 机器人基坐标系。
+base_link_frame: base_link
+# 地图坐标系。
+map_frame: map
+# 世界坐标系，通常与 `odom_frame` 或 `map_frame` 相同。
+world_frame: odom
+ 
+# 里程计数据源 `odom0` 配置。
+# 里程计话题名称。
+odom0: /odom
+# 里程计数据融合配置。15个布尔值对应状态向量 (x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az)。
+# `true` 表示融合该维度的数据，`false` 表示不融合。
+odom0_config: [true, true, false,  # x, y, z
+               false, false, false,  # roll, pitch, yaw
+               false, false, false,  # x vel, y vel, z vel
+               false, false, true,   # roll vel, pitch vel, yaw vel (此处只融合 yaw 速度)
+               false, false, false]  # x accel, y accel, z accel
+# 是否对里程计数据进行差分融合。如果设置为 `true`，则融合的是里程计数据的变化量而不是绝对值。
+odom0_differential: false
+ 
+# IMU 数据源 `imu0` 配置。
+# IMU 话题名称。
+imu0: /imu
+# IMU 数据融合配置。15个布尔值对应状态向量 (x, y, z, roll, pitch, yaw, vx, vy, vz, vroll, vpitch, vyaw, ax, ay, az)。
+# `robot_localization` 建议融合 IMU 的姿态信息。
+imu0_config: [
+    false,  false,  false,  # x, y, z
+    true,   true,   true,   # roll, pitch, yaw (机器人定位建议融合 IMU 的姿态)
+    false,  false,  false,  # x vel, y vel, z vel
+    false,  false,  false,  # roll vel, pitch vel, yaw vel
+    false,  false,  false   # x accel, y accel, z accel (理想情况下希望融合 x, y 加速度，z 加速度不融合)
+]
+# 是否对 IMU 数据进行差分融合。
+imu0_differential: false
+ 
+# 过程噪声协方差矩阵。用于描述模型的不确定性，对滤波器输出的平滑度和响应速度有影响。
+# 这是一个 15x15 的矩阵，这里以一维数组形式表示。
+process_noise_covariance": [0.05, 0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0.05, 0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0.06, 0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0.03, 0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0.03, 0,    0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0.06, 0,     0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0.025, 0,     0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0.025, 0,    0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0.04, 0,    0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0.01, 0,    0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0.01, 0,    0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0.02, 0,    0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0.01, 0,    0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0.01, 0,
+                                              0,    0,    0,    0,    0,    0,    0,     0,     0,    0,    0,    0,    0,    0,    0.015]
+# 初始估计协方差矩阵。用于设置滤波器启动时的不确定性，通常设置为非常小的值。
+initial_estimate_covariance: [1e-9, 0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    1e-9, 0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    1e-9, 0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    1e-9, 0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    1e-9, 0,    0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    1e-9, 0,    0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    1e-9, 0,    0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    1e-9, 0,    0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    1e-9, 0,     0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    1e-9,  0,     0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     1e-9,  0,     0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     1e-9,  0,    0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     1e-9, 0,    0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    1e-9, 0,
+                                                      0,    0,    0,    0,    0,    0,    0,    0,    0,    0,     0,     0,     0,    0,    1e-9]

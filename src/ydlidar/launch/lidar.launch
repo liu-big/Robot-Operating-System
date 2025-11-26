@@ -1,0 +1,50 @@
+<!--
+  YDLIDAR雷达启动文件
+  该文件用于启动YDLIDAR雷达的ROS驱动节点，并发布雷达数据。
+-->
+<launch>
+  <!-- YDLIDAR雷达驱动节点
+       name: 节点名称
+       pkg: ydlidar 包
+       type: ydlidar_node 可执行文件
+       output: screen 将节点输出显示到屏幕
+       respawn: false 表示节点崩溃后不自动重启
+  -->
+  <node name="ydlidar_node"  pkg="ydlidar"  type="ydlidar_node" output="screen" respawn="false" >
+    <!-- 串口名称，连接雷达的端口 -->
+    <param name="port"         type="string" value="/dev/ttyS4"/>  
+    <!-- 雷达数据发布的坐标系ID -->
+    <param name="frame_id"     type="string" value="laser_frame"/>
+    <!-- 是否固定分辨率，true表示固定 -->
+    <param name="resolution_fixed"    type="bool"   value="true"/>
+    <!-- 是否自动重连，true表示自动重连 -->
+    <param name="auto_reconnect"    type="bool"   value="true"/>
+    <!-- 是否反转，true表示反转扫描方向 -->
+    <param name="reversion"    type="bool"   value="true"/>
+    <!-- 最小扫描角度（度） -->
+    <param name="angle_min"    type="double" value="-180" />
+    <!-- 最大扫描角度（度） -->
+    <param name="angle_max"    type="double" value="180" />
+    <!-- 最小有效距离（米） -->
+    <param name="range_min"    type="double" value="0.08" />
+    <!-- 最大有效距离（米） -->
+    <param name="range_max"    type="double" value="16.0" />
+    <!-- 忽略角度范围，格式为"min1,max1,min2,max2" -->
+    <param name="ignore_array" type="string" value="" />
+    <!-- 采样率 -->
+    <param name="samp_rate"    type="int"    value="9"/>
+    <!-- 扫描频率（Hz） -->
+    <param name="frequency"    type="double" value="10"/>
+  </node>
+
+  <!-- 发布base_footprint到laser_frame的静态TF变换
+       pkg: tf 包
+       type: static_transform_publisher 可执行文件
+       name: 节点名称
+       args: x y z roll pitch yaw parent_frame_id child_frame_id period_in_ms
+       这里将laser_frame（激光雷达）相对于base_footprint（机器人基座）进行变换。
+  -->
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser4"
+    args="-0.11 0.0 0.0 0.0 0.0  0.0 /base_footprint /laser_frame 40" />
+
+</launch>

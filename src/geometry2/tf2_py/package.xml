@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!-- ROS 包定义 -->
+<package>
+  <!-- 包的名称 -->
+  <name>tf2_py</name>
+  <!-- 包的版本号 -->
+  <version>0.6.5</version>
+  <!-- 包的描述 -->
+  <description>tf2_py 包提供了 tf2 的 Python 绑定。</description>
+
+  <!-- 维护者标签：一个必需，多个允许，每人一个标签 --> 
+  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
+
+
+  <!-- 许可证标签：一个必需，多个允许，每种许可证一个标签 -->
+  <!-- 常用的许可证字符串：-->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>BSD</license>
+
+
+  <!-- URL 标签是可选的，但允许多个，每个标签一个 -->
+  <!-- 可选属性类型可以是：website, bugtracker, 或 repository -->
+  <!-- 示例：-->
+  <url type="website">http://ros.org/wiki/tf2_py</url>
+
+
+  <!-- 作者标签是可选的，允许多个，每人一个标签 -->
+  <!-- 作者不必是维护者，但可以是 -->
+  <!-- 示例：-->
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+
+
+  <!-- *_depend 标签用于指定依赖项 -->
+  <!-- 依赖项可以是 catkin 包或系统依赖项 -->
+  <!-- 示例：-->
+  <!-- build_depend 用于编译时需要的包：-->
+  <!--   <build_depend>message_generation</build_depend> -->
+  <!-- buildtool_depend 用于构建工具包：-->
+  <!--   <buildtool_depend>catkin</buildtool_depend> -->
+  <!-- run_depend 用于运行时需要的包：-->
+  <!--   <run_depend>message_runtime</run_depend> -->
+  <!-- test_depend 用于仅用于测试的包：-->
+  <!--   <test_depend>gtest</test_depend> -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>tf2</build_depend>
+  <build_depend>rospy</build_depend>
+  <run_depend>tf2</run_depend>
+  <run_depend>rospy</run_depend>
+
+
+  <!-- export 标签包含其他未指定的标签 -->
+  <export>
+    <!-- 您可以在此处指定此包是一个元包：-->
+    <!-- <metapackage/> -->
+
+    <!-- 其他工具可以请求在此处放置额外信息 -->
+
+  </export>
+</package>

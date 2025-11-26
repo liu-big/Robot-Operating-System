@@ -1,0 +1,55 @@
+<!--
+  此文件定义了ROS包eigen_conversions的元数据。
+  eigen_conversions包提供了Eigen库类型和ROS消息类型（如geometry_msgs）以及KDL类型之间的转换函数。
+  这使得在ROS中使用Eigen和KDL进行几何计算变得更加方便。
+-->
+<package>
+  <!-- 包的名称 -->
+  <name>eigen_conversions</name>
+  <!-- 包的版本号 -->
+  <version>1.12.0</version>
+  <!-- 包的简要描述 -->
+  <description>
+
+     <!-- 转换函数： -->
+     <!-- - Eigen类型与KDL类型之间的转换 -->
+     <!-- - Eigen类型与geometry_msgs消息类型之间的转换 -->
+     Conversion functions between:
+      - Eigen and KDL
+      - Eigen and geometry_msgs.
+
+  </description>
+  <!-- 包的作者 -->
+  <author>Stuart Glaser</author>
+  <author>Adam Leeper</author>
+  <!-- 包的维护者及其邮箱 -->
+  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
+
+  <!-- 包的许可证类型 -->
+  <license>BSD</license>
+  <!-- 包的官方WIKI页面URL -->
+  <url>http://ros.org/wiki/eigen_conversions</url>
+
+  <!-- 构建工具依赖：catkin是ROS的构建系统 -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- 构建时依赖： -->
+  <!-- geometry_msgs: 包含ROS几何消息类型，如Point, Pose等 -->
+  <build_depend>geometry_msgs</build_depend>
+  <!-- eigen: Eigen线性代数库，用于高效的矩阵和向量操作 -->
+  <build_depend>eigen</build_depend>
+  <!-- orocos_kdl: Orocos Kinematics and Dynamics Library，用于机器人运动学和动力学 -->
+  <build_depend>orocos_kdl</build_depend>
+  <!-- std_msgs: 包含ROS标准消息类型 -->
+  <build_depend>std_msgs</build_depend>
+
+  <!-- 运行时依赖： -->
+  <!-- geometry_msgs: 运行时需要几何消息类型 -->
+  <run_depend>geometry_msgs</run_depend>
+  <!-- eigen: 运行时需要Eigen库 -->
+  <run_depend>eigen</run_depend>
+  <!-- orocos_kdl: 运行时需要KDL库 -->
+  <run_depend>orocos_kdl</run_depend>
+  <!-- std_msgs: 运行时需要标准消息类型 -->
+  <run_depend>std_msgs</run_depend>
+</package>

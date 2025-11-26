@@ -1,0 +1,30 @@
+port: /dev/ttyS0 #ttyUSB0 # 串口波特率
+baud: 921600 # 115200 
+# 机器人基座坐标系名称
+base_frame: base_link
+# 里程计坐标系名称
+odom_frame: odom
+# joy手柄话题名称
+joy_topic:  /joy
+# 里程计话题名称
+odom_topic: /wheel_odom
+# 机器人轴距的一半（或相关几何参数）
+base_shape_a: 0.2169
+# 车轮半径
+wheel_radius: 0.04657 
+# 速度控制话题名称
+vel_topic: /cmd_vel
+# 是否提供里程计TF变换（当前注释掉，表示不提供）
+# provide_odom_tf: true
+# 命令超时时间（秒）
+cmd_timeout: 0.2
+# 串口通信超时时间（毫秒）
+serial_timeout: 50
+# 最大线速度（米/秒）
+linear_speed_max:  3.0
+# 最大角速度（弧度/秒）
+angular_speed_max: 3.14
+# 里程信息文件名
+Mileage_file_name:  car_Mileage_info.txt
+# 是否启用调试日志
+debug_log:  false

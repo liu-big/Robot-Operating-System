@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!-- package.xml是ROS包的清单文件，定义了包的元数据、依赖项和构建信息。 -->
+<package format="2">
+  <!-- 包的名称 -->
+  <name>ucar_map</name>
+  <!-- 包的版本号 -->
+  <version>0.0.0</version>
+  <!-- 包的简要描述 -->
+  <description>The ucar_map package</description>
+
+  <!-- 维护者标签：必需一个，允许多个，每个标签一个人 -->
+  <!-- 示例： -->
+  <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+  <maintainer email="jwliang@iflytek.com">iflytek</maintainer>
+
+
+  <!-- 许可证标签：必需一个，允许多个，每个标签一个许可证 -->
+  <!-- 常用的许可证字符串： -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>BSD</license>
+
+
+  <!-- URL标签是可选的，但允许多个，每个标签一个 -->
+  <!-- 可选属性type可以是：website, bugtracker, or repository -->
+  <!-- 示例： -->
+  <!-- <url type="website">http://wiki.ros.org/ucar_map</url> -->
+
+
+  <!-- 作者标签是可选的，允许多个，每个标签一个人 -->
+  <!-- 作者不必是维护者，但可以是 -->
+  <!-- 示例： -->
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+
+
+  <!-- *depend标签用于指定依赖项 -->
+  <!-- 依赖项可以是catkin包或系统依赖项 -->
+  <!-- 示例： -->
+  <!-- depend作为同时是构建和执行依赖项的包的快捷方式 -->
+  <!--   <depend>roscpp</depend> -->
+  <!--   请注意，这等同于以下内容： -->
+  <!--   <build_depend>roscpp</build_depend> -->
+  <!--   <exec_depend>roscpp</exec_depend> -->
+  <!-- build_depend用于编译时需要的包： -->
+  <!--   <build_depend>message_generation</build_depend> -->
+  <!-- build_export_depend用于构建此包时需要的包： -->
+  <!--   <build_export_depend>message_generation</build_export_depend> -->
+  <!-- buildtool_depend用于构建工具包： -->
+  <!--   <buildtool_depend>catkin</buildtool_depend> -->
+  <!-- exec_depend用于运行时需要的包： -->
+  <!--   <exec_depend>message_runtime</exec_depend> -->
+  <!-- test_depend用于仅用于测试的包： -->
+  <!--   <test_depend>gtest</test_depend> -->
+  <!-- doc_depend用于仅用于构建文档的包： -->
+  <!--   <doc_depend>doxygen</doc_depend> -->
+  <!-- 构建工具依赖：catkin构建系统 -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <!-- 构建依赖：导航消息 -->
+  <build_depend>nav_msgs</build_depend>
+  <!-- 构建依赖：ROS C++客户端库 -->
+  <build_depend>roscpp</build_depend>
+  <!-- 构建依赖：ROS Python客户端库 -->
+  <build_depend>rospy</build_depend>
+  <!-- 构建依赖：传感器消息 -->
+  <build_depend>sensor_msgs</build_depend>
+  <!-- 构建依赖：标准消息 -->
+  <build_depend>std_msgs</build_depend>
+  <!-- 构建导出依赖：导航消息 -->
+  <build_export_depend>nav_msgs</build_export_depend>
+  <!-- 构建导出依赖：ROS C++客户端库 -->
+  <build_export_depend>roscpp</build_export_depend>
+  <!-- 构建导出依赖：ROS Python客户端库 -->
+  <build_export_depend>rospy</build_export_depend>
+  <!-- 构建导出依赖：传感器消息 -->
+  <build_export_depend>sensor_msgs</build_export_depend>
+  <!-- 构建导出依赖：标准消息 -->
+  <build_export_depend>std_msgs</build_export_depend>
+  <!-- 执行依赖：导航消息 -->
+  <exec_depend>nav_msgs</exec_depend>
+  <!-- 执行依赖：ROS C++客户端库 -->
+  <exec_depend>roscpp</exec_depend>
+  <!-- 执行依赖：ROS Python客户端库 -->
+  <exec_depend>rospy</exec_depend>
+  <!-- 执行依赖：传感器消息 -->
+  <exec_depend>sensor_msgs</exec_depend>
+  <!-- 执行依赖：标准消息 -->
+  <exec_depend>std_msgs</exec_depend>
+
+
+  <!-- export标签包含其他未指定的标签 -->
+  <export>
+    <!-- 其他工具可以在此处请求放置额外信息 -->
+
+  </export>
+</package>

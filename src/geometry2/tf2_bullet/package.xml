@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+  tf2_bullet 包的 package.xml 文件
+  该文件定义了 tf2_bullet 包的元数据、依赖项和构建信息。
+-->
+<package>
+  <!-- 包的名称 -->
+  <name>tf2_bullet</name>
+  <!-- 包的版本号 -->
+  <version>0.6.5</version>
+  <!-- 包的简要描述 -->
+  <description>
+    tf2_bullet
+  </description>
+  <!-- 包的作者 -->
+  <author>Wim Meeussen</author>
+  <!-- 包的维护者及其电子邮件 -->
+  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
+  <!-- 包的许可证类型 -->
+  <license>BSD</license>
+
+  <!-- 包的官方网站 URL -->
+  <url type="website">http://www.ros.org/wiki/tf2_bullet</url>
+    
+  <!-- 构建工具依赖项，指定 catkin 的最低版本 -->
+  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
+  <!-- 构建工具依赖项，用于 pkg-config -->
+  <buildtool_depend>pkg-config</buildtool_depend>
+
+  <!-- 构建时依赖项 -->
+  <build_depend>tf2</build_depend>
+  <build_depend>bullet</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+
+  <!-- 运行时依赖项 -->
+  <run_depend>tf2</run_depend>
+  <run_depend>bullet</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+
+</package>
+

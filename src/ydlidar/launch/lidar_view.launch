@@ -1,0 +1,20 @@
+<!--
+  YDLIDAR雷达可视化启动文件
+  该文件用于启动YDLIDAR雷达节点，并使用RViz进行可视化。
+-->
+<launch>
+  <!-- 包含YDLIDAR雷达的启动文件
+       该文件通常会启动YDLIDAR雷达的ROS驱动节点。
+  -->
+  <include file="$(find ydlidar)/launch/ylidar.launch" />
+
+  <!-- RViz可视化工具节点
+       name: 节点名称
+       pkg: rviz 包
+       type: rviz 可执行文件
+       args: -d 指定RViz配置文件路径
+       $(find ydlidar)/launch/lidar.rviz: RViz配置文件路径
+  -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ydlidar)/launch/lidar.rviz" />
+
+</launch>

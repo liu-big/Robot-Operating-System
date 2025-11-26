@@ -1,0 +1,189 @@
+<?xml version="1.0" ?>
+<Data>
+    <eEventID value="2" />
+    <wParam value="2" />
+    <lParam value="0" />
+    <unit_type value="0" />
+    <unit_index value="0" />
+    <unit_read_status value="0" />
+    <unit_errcheck_status value="0" />
+    <unit_score value="0" />
+    <unit_accuracy value="0" />
+    <unit_fluency value="0" />
+    <unit_score_confidence value="0" />
+    <time_beg value="0" />
+    <time_end value="0" />
+</Data>
+,<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<xml_result>
+    <read_sentence lan="cn" type="study" version="6,5,0,1006">
+        <rec_paper>
+            <read_sentence beg_pos="0" content="不管我的梦想能否成为事实" end_pos="378" except_info="0" integrity_score="100.000000" is_rejected="false" time_len="378" total_score="4.555430">
+                <sentence beg_pos="0" content="不管我的梦想能否成为事实" end_pos="378" time_len="378" total_score="4.555430">
+                    <word beg_pos="0" content="不" end_pos="74" symbol="bu4" time_len="74">
+                        <syll beg_pos="0" content="sil" dp_message="0" end_pos="46" time_len="46">
+                            <phone beg_pos="0" content="sil" dp_message="0" end_pos="46" time_len="46" />
+                        </syll>
+                        <syll beg_pos="46" content="不" dp_message="0" end_pos="74" symbol="bu4" time_len="28">
+                            <phone beg_pos="46" content="b" dp_message="0" end_pos="58" is_yun="0" time_len="12" />
+                            <phone beg_pos="58" content="u" dp_message="0" end_pos="74" is_yun="1" mono_tone="TONE4" time_len="16" />
+                        </syll>
+                    </word>
+                    <word beg_pos="74" content="管" end_pos="102" symbol="guan2" time_len="28">
+                        <syll beg_pos="74" content="管" dp_message="0" end_pos="102" symbol="guan2" time_len="28">
+                            <phone beg_pos="74" content="g" dp_message="0" end_pos="86" is_yun="0" time_len="12" />
+                            <phone beg_pos="86" content="uan" dp_message="0" end_pos="102" is_yun="1" mono_tone="TONE2" time_len="16" />
+                        </syll>
+                    </word>
+                    <word beg_pos="102" content="我" end_pos="128" symbol="wo3" time_len="26">
+                        <syll beg_pos="102" content="我" dp_message="0" end_pos="128" symbol="wo3" time_len="26">
+                            <phone beg_pos="102" content="_u" dp_message="0" end_pos="116" is_yun="0" time_len="14" />
+                            <phone beg_pos="116" content="uo" dp_message="0" end_pos="128" is_yun="1" mono_tone="TONE3" time_len="12" />
+                        </syll>
+                    </word>
+                    <word beg_pos="128" content="的" end_pos="149" symbol="de5" time_len="21">
+                        <syll beg_pos="128" content="的" dp_message="0" end_pos="149" symbol="de0" time_len="21">
+                            <phone beg_pos="128" content="d" dp_message="0" end_pos="138" is_yun="0" time_len="10" />
+                            <phone beg_pos="138" content="e" dp_message="0" end_pos="149" is_yun="1" mono_tone="TONE0" time_len="11" />
+                        </syll>
+                    </word>
+                    <word beg_pos="149" content="梦" end_pos="174" symbol="meng4" time_len="25">
+                        <syll beg_pos="149" content="梦" dp_message="0" end_pos="174" symbol="meng4" time_len="25">
+                            <phone beg_pos="149" content="m" dp_message="0" end_pos="163" is_yun="0" time_len="14" />
+                            <phone beg_pos="163" content="eng" dp_message="0" end_pos="174" is_yun="1" mono_tone="TONE4" time_len="11" />
+                        </syll>
+                    </word>
+                    <word beg_pos="174" content="想" end_pos="210" symbol="xiang3" time_len="36">
+                        <syll beg_pos="174" content="想" dp_message="0" end_pos="210" symbol="xiang3" time_len="36">
+                            <phone beg_pos="174" content="x" dp_message="0" end_pos="192" is_yun="0" time_len="18" />
+                            <phone beg_pos="192" content="iang" dp_message="0" end_pos="210" is_yun="1" mono_tone="TONE3" time_len="18" />
+                        </syll>
+                    </word>
+                    <word beg_pos="210" content="能" end_pos="234" symbol="neng2" time_len="24">
+                        <syll beg_pos="210" content="能" dp_message="0" end_pos="234" symbol="neng2" time_len="24">
+                            <phone beg_pos="210" content="n" dp_message="0" end_pos="218" is_yun="0" time_len="8" />
+                            <phone beg_pos="218" content="eng" dp_message="0" end_pos="234" is_yun="1" mono_tone="TONE2" time_len="16" />
+                        </syll>
+                    </word>
+                    <word beg_pos="234" content="否" end_pos="258" symbol="fou3" time_len="24">
+                        <syll beg_pos="234" content="否" dp_message="0" end_pos="258" symbol="fou3" time_len="24">
+                            <phone beg_pos="234" content="f" dp_message="0" end_pos="246" is_yun="0" time_len="12" />
+                            <phone beg_pos="246" content="ou" dp_message="0" end_pos="258" is_yun="1" mono_tone="TONE3" time_len="12" />
+                        </syll>
+                    </word>
+                    <word beg_pos="258" content="成" end_pos="282" symbol="cheng2" time_len="24">
+                        <syll beg_pos="258" content="成" dp_message="0" end_pos="282" symbol="cheng2" time_len="24">
+                            <phone beg_pos="258" content="ch" dp_message="0" end_pos="277" is_yun="0" time_len="19" />
+                            <phone beg_pos="277" content="eng" dp_message="0" end_pos="282" is_yun="1" mono_tone="TONE2" time_len="5" />
+                        </syll>
+                    </word>
+                    <word beg_pos="282" content="为" end_pos="310" symbol="wei2" time_len="28">
+                        <syll beg_pos="282" content="为" dp_message="0" end_pos="310" symbol="wei2" time_len="28">
+                            <phone beg_pos="282" content="_u" dp_message="0" end_pos="298" is_yun="0" time_len="16" />
+                            <phone beg_pos="298" content="uei" dp_message="0" end_pos="310" is_yun="1" mono_tone="TONE2" time_len="12" />
+                        </syll>
+                    </word>
+                    <word beg_pos="310" content="事" end_pos="336" symbol="shi4" time_len="26">
+                        <syll beg_pos="310" content="事" dp_message="0" end_pos="336" symbol="shi4" time_len="26">
+                            <phone beg_pos="310" content="sh" dp_message="0" end_pos="328" is_yun="0" time_len="18" />
+                            <phone beg_pos="328" content="iii" dp_message="0" end_pos="336" is_yun="1" mono_tone="TONE4" time_len="8" />
+                        </syll>
+                    </word>
+                    <word beg_pos="336" content="实" end_pos="378" symbol="shi2" time_len="42">
+                        <syll beg_pos="336" content="实" dp_message="0" end_pos="377" symbol="shi2" time_len="41">
+                            <phone beg_pos="336" content="sh" dp_message="0" end_pos="356" is_yun="0" time_len="20" />
+                            <phone beg_pos="356" content="iii" dp_message="0" end_pos="377" is_yun="1" mono_tone="TONE2" time_len="21" />
+                        </syll>
+                        <syll beg_pos="377" content="fil" dp_message="32" end_pos="378" time_len="1">
+                            <phone beg_pos="377" content="fil" end_pos="378" time_len="1" />
+                        </syll>
+                    </word>
+                </sentence>
+            </read_sentence>
+        </rec_paper>
+        <rec_tree>
+            <read_sentence beg_pos="0" content="不管我的梦想能否成为事实" end_pos="378" time_len="378">
+                <sentence beg_pos="0" content="不管我的梦想能否成为事实" end_pos="378" time_len="378">
+                    <word beg_pos="0" content="不" end_pos="74" symbol="bu4" time_len="74">
+                        <syll beg_pos="0" content="sil" dp_message="0" end_pos="46" time_len="46">
+                            <phone beg_pos="0" content="sil" dp_message="0" end_pos="46" time_len="46" />
+                        </syll>
+                        <syll beg_pos="46" content="不" dp_message="0" end_pos="74" symbol="bu4" time_len="28">
+                            <phone beg_pos="46" content="b" dp_message="0" end_pos="58" is_yun="0" time_len="12" />
+                            <phone beg_pos="58" content="u" dp_message="0" end_pos="74" is_yun="1" mono_tone="TONE4" time_len="16" />
+                        </syll>
+                    </word>
+                    <word beg_pos="74" content="管" end_pos="102" symbol="guan2" time_len="28">
+                        <syll beg_pos="74" content="管" dp_message="0" end_pos="102" symbol="guan2" time_len="28">
+                            <phone beg_pos="74" content="g" dp_message="0" end_pos="86" is_yun="0" time_len="12" />
+                            <phone beg_pos="86" content="uan" dp_message="0" end_pos="102" is_yun="1" mono_tone="TONE2" time_len="16" />
+                        </syll>
+                    </word>
+                    <word beg_pos="102" content="我" end_pos="128" symbol="wo3" time_len="26">
+                        <syll beg_pos="102" content="我" dp_message="0" end_pos="128" symbol="wo3" time_len="26">
+                            <phone beg_pos="102" content="_u" dp_message="0" end_pos="116" is_yun="0" time_len="14" />
+                            <phone beg_pos="116" content="uo" dp_message="0" end_pos="128" is_yun="1" mono_tone="TONE3" time_len="12" />
+                        </syll>
+                    </word>
+                    <word beg_pos="128" content="的" end_pos="149" symbol="de5" time_len="21">
+                        <syll beg_pos="128" content="的" dp_message="0" end_pos="149" symbol="de0" time_len="21">
+                            <phone beg_pos="128" content="d" dp_message="0" end_pos="138" is_yun="0" time_len="10" />
+                            <phone beg_pos="138" content="e" dp_message="0" end_pos="149" is_yun="1" mono_tone="TONE0" time_len="11" />
+                        </syll>
+                    </word>
+                    <word beg_pos="149" content="梦" end_pos="174" symbol="meng4" time_len="25">
+                        <syll beg_pos="149" content="梦" dp_message="0" end_pos="174" symbol="meng4" time_len="25">
+                            <phone beg_pos="149" content="m" dp_message="0" end_pos="163" is_yun="0" time_len="14" />
+                            <phone beg_pos="163" content="eng" dp_message="0" end_pos="174" is_yun="1" mono_tone="TONE4" time_len="11" />
+                        </syll>
+                    </word>
+                    <word beg_pos="174" content="想" end_pos="210" symbol="xiang3" time_len="36">
+                        <syll beg_pos="174" content="想" dp_message="0" end_pos="210" symbol="xiang3" time_len="36">
+                            <phone beg_pos="174" content="x" dp_message="0" end_pos="192" is_yun="0" time_len="18" />
+                            <phone beg_pos="192" content="iang" dp_message="0" end_pos="210" is_yun="1" mono_tone="TONE3" time_len="18" />
+                        </syll>
+                    </word>
+                    <word beg_pos="210" content="能" end_pos="234" symbol="neng2" time_len="24">
+                        <syll beg_pos="210" content="能" dp_message="0" end_pos="234" symbol="neng2" time_len="24">
+                            <phone beg_pos="210" content="n" dp_message="0" end_pos="218" is_yun="0" time_len="8" />
+                            <phone beg_pos="218" content="eng" dp_message="0" end_pos="234" is_yun="1" mono_tone="TONE2" time_len="16" />
+                        </syll>
+                    </word>
+                    <word beg_pos="234" content="否" end_pos="258" symbol="fou3" time_len="24">
+                        <syll beg_pos="234" content="否" dp_message="0" end_pos="258" symbol="fou3" time_len="24">
+                            <phone beg_pos="234" content="f" dp_message="0" end_pos="246" is_yun="0" time_len="12" />
+                            <phone beg_pos="246" content="ou" dp_message="0" end_pos="258" is_yun="1" mono_tone="TONE3" time_len="12" />
+                        </syll>
+                    </word>
+                    <word beg_pos="258" content="成" end_pos="282" symbol="cheng2" time_len="24">
+                        <syll beg_pos="258" content="成" dp_message="0" end_pos="282" symbol="cheng2" time_len="24">
+                            <phone beg_pos="258" content="ch" dp_message="0" end_pos="277" is_yun="0" time_len="19" />
+                            <phone beg_pos="277" content="eng" dp_message="0" end_pos="282" is_yun="1" mono_tone="TONE2" time_len="5" />
+                        </syll>
+                    </word>
+                    <word beg_pos="282" content="为" end_pos="310" symbol="wei2" time_len="28">
+                        <syll beg_pos="282" content="为" dp_message="0" end_pos="310" symbol="wei2" time_len="28">
+                            <phone beg_pos="282" content="_u" dp_message="0" end_pos="298" is_yun="0" time_len="16" />
+                            <phone beg_pos="298" content="uei" dp_message="0" end_pos="310" is_yun="1" mono_tone="TONE2" time_len="12" />
+                        </syll>
+                    </word>
+                    <word beg_pos="310" content="事" end_pos="336" symbol="shi4" time_len="26">
+                        <syll beg_pos="310" content="事" dp_message="0" end_pos="336" symbol="shi4" time_len="26">
+                            <phone beg_pos="310" content="sh" dp_message="0" end_pos="328" is_yun="0" time_len="18" />
+                            <phone beg_pos="328" content="iii" dp_message="0" end_pos="336" is_yun="1" mono_tone="TONE4" time_len="8" />
+                        </syll>
+                    </word>
+                    <word beg_pos="336" content="实" end_pos="378" symbol="shi2" time_len="42">
+                        <syll beg_pos="336" content="实" dp_message="0" end_pos="377" symbol="shi2" time_len="41">
+                            <phone beg_pos="336" content="sh" dp_message="0" end_pos="356" is_yun="0" time_len="20" />
+                            <phone beg_pos="356" content="iii" dp_message="0" end_pos="377" is_yun="1" mono_tone="TONE2" time_len="21" />
+                        </syll>
+                        <syll beg_pos="377" content="fil" dp_message="32" end_pos="378" time_len="1">
+                            <phone beg_pos="377" content="fil" end_pos="378" time_len="1" />
+                        </syll>
+                    </word>
+                </sentence>
+            </read_sentence>
+        </rec_tree>
+    </read_sentence>
+</xml_result>

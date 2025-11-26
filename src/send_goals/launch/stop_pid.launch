@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="tf2_ros" type="static_transform_publisher" name="stop_point" args="0.0754 -5.12 0.00295 0 0 0 /map /stop_point" output="screen" />
+    <node pkg = "send_goals" type = "tf_stop_pid" name = "stop_pid"  output = "screen" args = "stop_point"/>
+
+
+
+</launch>

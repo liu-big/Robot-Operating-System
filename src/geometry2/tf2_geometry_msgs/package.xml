@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!-- ROS 包定义，遵循 format 2 规范 -->
+<package format="2">
+  <!-- 包的名称 -->
+  <name>tf2_geometry_msgs</name>
+  <!-- 包的版本号 -->
+  <version>0.6.5</version>
+  <!-- 包的简要描述 -->
+  <description>
+    tf2_geometry_msgs 包提供了 geometry_msgs 消息类型与 tf2 之间的数据转换功能。
+  </description>
+  <!-- 包的作者 -->
+  <author>Wim Meeussen</author>
+  <!-- 包的维护者及其邮箱 -->
+  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
+  <!-- 包的许可证类型 -->
+  <license>BSD</license>
+
+  <!-- 包的官方网站链接 -->
+  <url type="website">http://www.ros.org/wiki/tf2_ros</url>
+    
+  <!-- 构建工具依赖，指定 catkin 版本不低于 0.5.68 -->
+  <buildtool_depend version_gte="0.5.68">catkin</buildtool_depend>
+
+  <!-- 运行时依赖项 -->
+  <depend>geometry_msgs</depend>
+  <depend>orocos_kdl</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+
+  <!-- 构建时依赖项 -->
+  <build_depend>python_orocos_kdl</build_depend>
+ 
+  <!-- 执行时依赖项 -->
+  <exec_depend>python_orocos_kdl</exec_depend>
+
+  <!-- 测试依赖项 -->
+  <test_depend>ros_environment</test_depend>
+  <test_depend>rostest</test_depend>
+</package>
+

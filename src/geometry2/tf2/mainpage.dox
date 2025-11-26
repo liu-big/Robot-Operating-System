@@ -1,0 +1,33 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b tf2 是 tf 库的第二代。
+
+此库实现了 tf2::BufferCore 定义的接口。
+
+还有一个 Python 包装器，具有相同的 API，使用 CPython 绑定调用此库。
+
+\section codeapi 代码 API
+
+主要接口通过 tf2::BufferCore 接口实现。
+
+它使用 exceptions.h 中的异常和 transform_datatypes.h 中的 Stamped 数据类型。
+
+\section conversions 转换接口
+
+tf2 提供了一个模板化的转换接口，供外部库指定 tf2 特定数据类型和用户定义数据类型之间的转换。tf2_ros 中的各种模板化函数使用转换接口将 tf 服务器的转换应用于这些自定义数据类型。
+
+转换接口在 tf2/convert.h 中定义。
+
+一些实现此接口的包：
+
+- tf2_bullet
+- tf2_eigen
+- tf2_geometry_msgs
+- tf2_kdl
+- tf2_sensor_msgs
+
+有关转换接口的更多文档可在 <A HREF="http://wiki.ros.org/tf2/Tutorials/Migration/DataConversions">ROS Wiki</A> 上找到。
+
+*/

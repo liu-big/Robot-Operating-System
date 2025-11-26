@@ -1,0 +1,13 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/nie/code4455555/xf_arm_ws/devel/lib/python3/dist-packages",
+        "/home/nie/cartographer_detailed_comments_ws/install_isolated/lib/python2.7/dist-packages",
+        "/home/nie/learn_ws/devel/lib/python2.7/dist-packages",
+        "/opt/ros/melodic/lib/python2.7/dist-packages"
+    ],
+    "files.associations": {
+        "string": "cpp",
+        "iostream": "cpp",
+        "functional": "cpp"
+    }
+}

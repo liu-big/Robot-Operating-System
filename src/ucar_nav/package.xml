@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!-- package.xml是ROS包的清单文件，定义了包的元数据、依赖项和构建信息。 -->
+<!-- 格式版本，这里是2。 -->
+<package format="2">
+  <!-- 包的名称，必须是唯一的。 -->
+  <name>ucar_nav</name>
+  <!-- 包的版本号。 -->
+  <version>0.0.0</version>
+  <!-- 包的简要描述。 -->
+  <description>The ucar_nav package</description>
+
+  <!-- 维护者信息，至少需要一个。 -->
+  <!-- email: 维护者的邮箱地址。 -->
+  <!-- name: 维护者的姓名。 -->
+  <maintainer email="jwliang@iflytek.com">iflytek</maintainer>
+
+  <!-- 许可证信息，表明包的开源协议。 -->
+  <!-- 常用的许可证包括BSD, MIT, GPL等。 -->
+  <license>BSD</license>
+
+  <!-- URL标签是可选的，可以有多个，每个标签一个URL。 -->
+  <!-- type属性可以是: website（网站）, bugtracker（问题追踪器）, 或 repository（代码仓库）。 -->
+  <!-- 示例: -->
+  <!-- <url type="website">http://wiki.ros.org/ucar_nav</url> -->
+
+  <!-- 作者信息是可选的，可以有多个，每个标签一个作者。 -->
+  <!-- 作者不一定是维护者。 -->
+  <!-- 示例: -->
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+
+  <!-- 依赖标签用于指定包的依赖项。 -->
+  <!-- 依赖可以是catkin包或系统依赖。 -->
+  <!-- 示例: -->
+  <!-- depend: 同时作为构建和执行依赖的快捷方式。 -->
+  <!--   <depend>roscpp</depend> -->
+  <!-- 这等同于: -->
+  <!--   <build_depend>roscpp</build_depend> -->
+  <!--   <exec_depend>roscpp</exec_depend> -->
+  <!-- build_depend: 编译时需要的包。 -->
+  <!--   <build_depend>message_generation</build_depend> -->
+  <!-- build_export_depend: 当其他包依赖此包时，编译此包所需的包。 -->
+  <!--   <build_export_depend>message_generation</build_export_depend> -->
+  <!-- buildtool_depend: 构建工具包，如catkin。 -->
+  <!--   <buildtool_depend>catkin</buildtool_depend> -->
+  <!-- exec_depend: 运行时需要的包。 -->
+  <!--   <exec_depend>message_runtime</exec_depend> -->
+  <!-- test_depend: 仅用于测试的包。 -->
+  <!--   <test_depend>gtest</test_depend> -->
+  <!-- doc_depend: 仅用于构建文档的包。 -->
+  <!--   <doc_depend>doxygen</doc_depend> -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>nav_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_export_depend>nav_msgs</build_export_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+  <!-- export标签包含其他未指定的标签。 -->
+  <export>
+    <!-- 其他工具可以在这里请求放置额外信息。 -->
+  </export>
+</package>

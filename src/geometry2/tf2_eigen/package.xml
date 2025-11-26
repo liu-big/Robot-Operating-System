@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+  tf2_eigen 包的 package.xml 文件
+  该文件定义了 tf2_eigen 包的元数据、依赖项和构建信息。
+-->
+<package format="2">
+  <!-- 包的名称 -->
+  <name>tf2_eigen</name>
+  <!-- 包的版本号 -->
+  <version>0.6.5</version>
+  <!-- 包的简要描述 -->
+  <description>tf2_eigen</description>
+  <!-- 包的作者 -->
+  <author>Koji Terada</author>
+  <!-- 包的维护者及其电子邮件 -->
+  <maintainer email="terakoji@gmail.com">Koji Terada</maintainer>
+  <!-- 包的许可证类型 -->
+  <license>BSD</license>
+
+  <!-- 构建工具依赖项 -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- 运行时依赖项 -->
+  <depend>geometry_msgs</depend>
+  <depend>tf2</depend>
+
+  <!-- 构建时依赖项 -->
+  <build_depend>cmake_modules</build_depend>
+  <build_depend>eigen</build_depend>
+
+  <!-- 构建导出依赖项 -->
+  <build_export_depend>eigen</build_export_depend>
+
+</package>

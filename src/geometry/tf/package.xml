@@ -1,0 +1,68 @@
+<!-- 包的根标签 -->
+<package>
+  <!-- 包的名称 -->
+  <name>tf</name>
+  <!-- 包的版本号 -->
+  <version>1.12.0</version>
+  <!-- 包的描述信息 -->
+  <description>
+
+    tf 是一个允许用户随时间跟踪多个坐标系关系的包。tf 在时间缓冲的树形结构中维护坐标系之间的关系，并允许用户在任何所需时间点在任意两个坐标系之间转换点、向量等。
+
+    <!-- 迁移说明：tf2 是 tf 的迭代版本，提供了更高效的相同功能集，并增加了一些新功能。 -->
+    <p><b>迁移</b>: 自 ROS Hydro 版本以来，tf 已被“弃用”，转而支持 <a href = "http://wiki.ros.org/tf2">tf2</a>。tf2 是 tf 的一个迭代版本，它以更高效的方式提供了大致相同的功能集，并增加了一些新功能。<br/>
+    <!-- 尽管 tf2 是一个重大变化，但 tf API 仍保持其当前形式。 -->
+    由于 tf2 是一个重大变化，tf API 仍保持其当前形式。由于 tf2 具有 tf 功能的超集，且依赖项更少，因此 tf 的实现已被移除，并替换为底层对 tf2 的调用。这意味着所有用户都将与 tf2 兼容。建议新项目直接使用 tf2，因为它具有更清晰的接口。然而，tf 将至少支持到 J Turtle 版本。
+    </p>
+  </description>
+  <!-- 包的作者 -->
+  <author>Tully Foote</author>
+  <author>Eitan Marder-Eppstein</author>
+  <author>Wim Meeussen</author>
+  <!-- 包的维护者信息 -->
+  <maintainer email="tfoote@osrfoundation.org">Tully Foote</maintainer>
+
+  <!-- 包的许可证 -->
+  <license>BSD</license>
+  <!-- 包的官方 Wiki 页面 URL -->
+  <url>http://www.ros.org/wiki/tf</url>
+
+  <!-- 构建工具依赖：catkin，版本号大于等于 0.6.4 -->
+  <buildtool_depend version_gte="0.6.4">catkin</buildtool_depend>
+
+  <!-- 构建依赖项列表 -->
+  <build_depend>angles</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>message_filters</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>rosconsole</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rostime</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend version_gte="0.5.16">tf2_ros</build_depend>
+
+  <!-- 运行依赖项列表 -->
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>graphviz</run_depend>
+  <run_depend version_gte="1.11.1">message_filters</run_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>rosconsole</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>roswtf</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend version_gte="0.5.16">tf2_ros</run_depend>
+
+  <!-- 测试依赖项列表 -->
+  <test_depend>rostest</test_depend>
+  <test_depend>rosunit</test_depend>
+
+  <!-- 导出标签，用于声明其他系统可以使用的包的特性 -->
+  <export>
+    <!-- roswtf 插件配置 -->
+    <roswtf plugin="tf.tfwtf" />
+    <!-- rosdoc 文档配置 -->
+    <rosdoc config="rosdoc.yaml" />
+  </export>
+</package>

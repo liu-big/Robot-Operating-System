@@ -1,0 +1,26 @@
+global_costmap:
+  # `global_frame`: 全局代价地图的世界坐标系。
+  # 通常设置为 `map`，表示地图坐标系。
+  global_frame: map
+  # `robot_base_frame`: 机器人底座的局部坐标系。
+  # 通常设置为 `base_link`，表示机器人本体的坐标系。
+  robot_base_frame: base_link
+  # `update_frequency`: 全局代价地图的更新频率（Hz）。
+  # 决定了代价地图多久更新一次。
+  update_frequency: 2.5
+  # `publish_frequency`: 全局代价地图的发布频率（Hz）。
+  # 决定了代价地图多久发布一次给其他ROS节点。
+  publish_frequency: 3.0
+
+  # `cost_scaling_factor`: 代价比例系数。
+  # 值越大，则代价值越小，机器人会更倾向于远离障碍物。
+  cost_scaling_factor: 5 #36
+  # `inflation_radius`: 膨胀半径（米）。
+  # 在障碍物周围扩展一个代价区域，给定机器人与障碍物之间必须要保持的最小距离。
+  inflation_radius: 0.18
+  # `static_map`: 决定代价地图是否需要根据 `map_server` 提供的地图信息进行初始化。
+  # 如果不需要使用已有的地图或者 `map_server`，最好将该参数设置为 `false`。
+  static_map: true
+
+
+

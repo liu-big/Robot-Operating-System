@@ -1,0 +1,91 @@
+TebLocalPlannerROS:
+  odom_topic: odom
+  map_frame: /map
+
+  # 机器人运动学参数
+  acc_lim_x: 2.45 # 最大 x 方向加速度限制
+  acc_lim_y: 0.55 # 最大 y 方向加速度限制
+  acc_lim_theta: 10.2 # 最大角加速度限制
+  max_vel_x_backwards: 16.45 # 最大后退线速度限制
+  max_vel_x: 4.3 # 最大 x 方向线速度限制
+  max_vel_y: 0.6 # 最大 y 方向线速度限制
+  max_vel_theta: 11.2 # 最大角速度限制
+
+  min_turning_radius: 0.0 # 最小转弯半径（差速驱动机器人为零）
+  is_footprint_dynamic: false # 是否足迹模型为动态的。如果为 true，则在检查轨迹可行性之前更新覆盖区。
+  footprint_model:
+    type: "line"
+    line_start: [-0.17, 0.0]
+    line_end: [0.17, 0.0]
+
+  # 目标容忍度
+  yaw_goal_tolerance: 0.03 # 偏航角目标容忍度
+  xy_goal_tolerance: 0.03 # XY 坐标目标容忍度
+  free_goal_vel: false # 到达目标时是否允许非零速度
+
+  # 轨迹参数
+  dt_ref: 0.35 # 最优树上相邻姿态的最优距离
+  dt_hysteresis: 0.1 # 滞后时间，用于调整 dt_ref
+  min_samples: 3 # 轨迹的最小采样点数
+  global_plan_overwrite_orientation: true # 是否覆盖全局路径中局部路径点的朝向
+  global_plan_viapoint_sep: -0.05 # 从全局计划中提取的每两个连续通过点之间的最小间隔（负值表示禁用）
+  max_global_plan_lookahead_dist: 0.9 # 考虑优化的全局计划子集的最大长度（累积欧几里得距离）
+  force_reinit_new_goal_dist: 1.0 # 如果上一个目标的间隔超过指定距离，强制规划器重新初始化轨迹
+  feasibility_check_no_poses: 1 # 检测位姿可到达的时间间隔
+  publish_feedback: false # 是否发布包含完整轨迹和活动障碍物列表的规划器反馈
+  allow_init_with_backwards_motion: false # 是否允许在开始时向后退来执行轨迹
+  exact_arc_length: false # 如果为真，规划器在速度、加速度和转弯率计算中使用精确的弧长，否则使用欧几里德近似
+  shrink_horizon_backup: true # 当规划器检测到系统异常时，是否允许缩小时域规划范围
+  shrink_horizon_min_duration: 10.0 # 缩小时域规划的最小持续时间
+
+  # 障碍物参数
+  min_obstacle_dist: 0.2 # 机器人与障碍物之间的最小安全距离
+  include_costmap_obstacles: true # 是否包含代价地图中的障碍物
+  costmap_obstacles_behind_robot_dist: 1.0 # 限制在机器人后面规划时考虑到的占用本地成本图障碍的距离
+  inflation_dist: 0.05 # 障碍物膨胀距离
+  include_dynamic_obstacles: false # 是否将动态障碍物预测为速度模型
+  legacy_obstacle_association: false # 是否使用旧的障碍物关联策略
+  obstacle_association_force_inclusion_factor: 0.5 # 强制包含障碍物的因子
+  obstacle_association_cutoff_factor: 5 # 障碍物关联的截止因子
+  obstacle_poses_affected: 35 # 影响障碍物姿态的轨迹点数
+  costmap_converter_plugin: "" # 代价地图转换器插件
+  costmap_converter_spin_thread: true # 是否在单独线程中运行代价地图转换器
+  costmap_converter_rate: 5.0 # 代价地图转换器的更新频率
+
+  # 优化参数
+  no_inner_iterations: 3 # 内循环优化次数
+  no_outer_iterations: 3 # 外循环优化次数
+  penalty_epsilon: 0.18 # 惩罚函数的安全范围
+  weight_acc_lim_x: 4.4 # 最大 x 方向加速度权重
+  weight_acc_lim_theta: 2.2 # 最大角速度权重
+  weight_max_vel_x: 4.4 # 最大 x 方向速度权重
+  weight_max_vel_theta: 5.9 # 最大加速度权重
+  weight_kinematics_nh: 10 # 运动学非完整性权重
+  weight_kinematics_forward_drive: 100.0 # 强制机器人只选择前进方向的权重
+  weight_kinematics_turning_radius: 1000.0 # 最小转弯半径的权重
+  weight_optimaltime: 20 # 最优时间权重
+  weight_obstacle: 25.0 # 障碍物距离权重
+  weight_viapoint: 200.0 # 全局路径采样点距离权重
+  weight_inflation: 0.06 # 膨胀区权重
+  weight_shortest_path: 5.0 # 最短路径权重
+  weight_adapt_factor: 2.0 # 权重自适应因子
+
+  # 同伦类规划器
+  enable_homotopy_class_planning: false # 是否启用同伦类规划
+  enable_multithreading: false # 是否允许多线程并行处理
+  max_number_classes: 2 # 规划出的最多轨迹数
+  selection_cost_hysteresis: 1.0 # 选择新候选轨迹的成本滞后
+  selection_obst_cost_scale: 100.0 # 障碍物成本项的额外缩放
+  selection_viapoint_cost_scale: 1.0 # 通点成本条款的额外增加
+  selection_alternative_time_cost: false # 是否将时间成本替换为总过渡时间
+  roadmap_graph_no_samples: 15 # 创建路线图图而生成的示例数量
+  roadmap_graph_area_width: 5 # 采样区域在开始和目标之间的宽度
+  h_signature_prescaler: 1.0 # 缩放障碍物数值
+  h_signature_threshold: 0.1 # H 符号相等阈值
+  obstacle_heading_threshold: 0.45 # 障碍物航向和目标航向之间的标准化标量积阈值
+  visualize_hc_graph: false # 是否可视化为探索新同伦类而创建的图
+  viapoints_all_candidates: true # 是否将不同拓扑的所有轨迹附加到该组通孔点
+  switching_blocking_period: 0.0 # 允许切换到新的等效类之前需要终止的持续时间
+  wheelbase: 0.2 # 机器人轴距
+
+

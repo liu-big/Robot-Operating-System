@@ -1,0 +1,13 @@
+﻿#BNF+IAT 1.0 UTF-8;
+!grammar call;
+!slot <want>;
+!slot <direction>;
+!slot <do>;
+!slot <what>;
+!start <callstart>;
+<callstart>:[<want>]<dowhat>;
+
+<want>:快速!id(00001)|快速!id(00001);
+<dowhat>:<direction><do>;
+<direction>:出发!id(10001)|出发解救!id(10002)|出发救!id(10003);
+<do>:人质!id(20001);

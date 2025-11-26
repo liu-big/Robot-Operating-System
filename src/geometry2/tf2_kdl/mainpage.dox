@@ -1,0 +1,16 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b tf2_kdl 包含用于在 geometry_msgs 和 KDL 数据类型之间进行转换的函数。
+
+该库是 tf/convert.h 中指定的模板化转换接口的实现。
+它能够轻松地将 geometry_msgs 的 Transform 和 Point 类型转换为 Orocos KDL (运动学和动力学库) API (参见 http://www.orocos.org/kdl) 指定的类型。
+
+有关 tf2 中数据类型转换的更多信息，请参阅 <A HREF="http://wiki.ros.org/tf2/Tutorials/Migration/DataConversions">转换概述</A> wiki 页面。
+
+\section codeapi 代码 API 
+
+该库仅包含一个头文件 tf2_kdl/tf2_kdl.h，主要由 tf2/convert.h 中定义的模板函数的特化组成。
+
+*/

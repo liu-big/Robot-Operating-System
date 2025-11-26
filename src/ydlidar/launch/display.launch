@@ -1,0 +1,97 @@
+<!--
+  YDLIDAR ROS显示启动文件
+  该文件用于在ROS中启动YDLIDAR节点，并使用RViz进行可视化。
+-->
+<launch>
+  <!-- 定义模型参数，通常用于加载URDF文件 -->
+  <arg
+    name="model" />
+  <!-- 定义GUI参数，默认为False，用于控制是否启动joint_state_publisher的GUI界面 -->
+  <arg
+    name="gui"
+    default="False" />
+
+  <!-- 加载机器人描述文件（URDF）到参数服务器
+       textfile: 从指定文件加载内容
+       $(find ydlidar)/urdf/ydlidar.urdf: YDLIDAR的URDF模型文件路径
+  -->
+  <param
+    name="robot_description"
+    textfile="$(find ydlidar)/urdf/ydlidar.urdf" />
+
+  <!-- 设置是否使用GUI的参数 -->
+  <param
+    name="use_gui"
+    value="$(arg gui)" />
+
+  <!-- 启动关节状态发布器
+       pkg: joint_state_publisher 包
+       type: joint_state_publisher 可执行文件
+       该节点发布机器人关节的当前状态。
+  -->
+  <node
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher" />
+
+  <!-- 启动机器人状态发布器
+       pkg: robot_state_publisher 包
+       type: state_publisher 可执行文件
+       该节点读取URDF模型和关节状态，并发布机器人各连杆之间的TF变换。
+  -->
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="state_publisher" />
+
+  <!-- YDLIDAR雷达驱动节点
+       name: 节点名称
+       pkg: ydlidar 包
+       type: ydlidar_node 可执行文件
+       output: screen 将节点输出显示到屏幕
+  -->
+ <node name="ydlidar_node"  pkg="ydlidar"  type="ydlidar_node" output="screen">
+    <!-- 串口名称，连接雷达的端口 -->
+    <param name="port"         type="string" value="/dev/ydlidar"/>  
+    <!-- 串口波特率 -->
+    <param name="baudrate"     type="int"    value="115200"/>
+    <!-- 雷达数据发布的坐标系ID -->
+    <param name="frame_id"     type="string" value="laser_frame"/>
+    <!-- 角度是否固定，true表示固定角度分辨率 -->
+    <param name="angle_fixed"  type="bool"   value="true"/>
+    <!-- 是否启用低曝光模式 -->
+    <param name="low_exposure"  type="bool"   value="false"/>
+    <!-- 是否启用心跳机制 -->
+    <param name="heartbeat"    type="bool"   value="false"/>
+    <!-- 是否固定分辨率 -->
+    <param name="resolution_fixed"    type="bool"   value="true"/>
+    <!-- 最小扫描角度（度） -->
+    <param name="angle_min"    type="double" value="-180" />
+    <!-- 最大扫描角度（度） -->
+    <param name="angle_max"    type="double" value="180" />
+    <!-- 最小有效距离（米） -->
+    <param name="range_min"    type="double" value="0.08" />
+    <!-- 最大有效距离（米） -->
+    <param name="range_max"    type="double" value="16.0" />
+    <!-- 忽略角度范围，格式为"min1,max1,min2,max2" -->
+    <param name="ignore_array" type="string" value="" />
+    <!-- 采样率 -->
+    <param name="samp_rate"    type="int"    value="9"/>
+    <!-- 扫描频率（Hz） -->
+    <param name="frequency"    type="double" value="7"/>
+  </node>
+
+  <!-- RViz可视化工具节点
+       name: 节点名称
+       pkg: rviz 包
+       type: rviz 可执行文件
+       args: -d 指定RViz配置文件路径
+       $(find ydlidar)/ydlidar.rviz: RViz配置文件路径
+  -->
+  <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(find ydlidar)/ydlidar.rviz" />
+
+</launch>

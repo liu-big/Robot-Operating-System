@@ -1,0 +1,10 @@
+<launch>
+  <!-- 包含Gmapping SLAM节点的启动文件 -->
+  <!-- 这个文件通常包含了gmapping节点及其参数的配置 -->
+  <include file="$(find ucar_map)/launch/gmapping.launch"/>
+
+  <!-- 启动RViz可视化工具 -->
+  <!-- RViz是ROS的3D可视化工具，用于显示机器人状态、传感器数据、地图等 -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ucar_map)/rviz/gmapping.rviz"/> <!-- 使用ucar_map包中gmapping.rviz配置文件启动RViz -->
+
+</launch>

@@ -1,0 +1,147 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Software License Agreement (BSD License)
+#
+# Copyright (c) 2008, Willow Garage, Inc.
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+#
+#  * Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#  * Redistributions in binary form must reproduce the above
+#    copyright notice, this list of conditions and the following
+#    disclaimer in the documentation and/or other materials provided
+#    with the distribution.
+#  * Neither the name of the Willow Garage nor the names of its
+#    contributors may be used to endorse or promote products derived
+#    from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+#
+# Revision $Id: gossipbot.py 1013 2008-05-21 01:08:56Z sfkwc $
+
+# 导入必要的模块
+from __future__ import print_function, with_statement
+
+import sys, time
+import os
+import string
+import re
+import subprocess
+import distutils.version
+
+from optparse import OptionParser
+
+import rospy
+from tf.srv import *
+import tf
+
+# listen函数：监听/tf话题并生成TF树的DOT图
+def listen(duration):
+    """
+    listen(duration)
+    @brief 监听/tf话题指定时长，并返回当前TF树的DOT图表示。
+    @param duration: 监听TF话题的持续时间（秒）。
+    @return str: TF树的DOT图字符串。
+    """
+    rospy.init_node("view_frames", anonymous=True)
+    tf_listener = tf.TransformListener()
+    print("Listening to /tf for {} seconds".format(duration))
+    time.sleep(duration)
+    print("Done Listening")
+    return tf_listener.allFramesAsDot(rospy.Time.now())
+
+# poll函数：通过服务调用获取指定节点的TF图
+def poll(node_name):
+    """
+    poll(node_name)
+    @brief 通过服务调用从指定节点获取TF图。
+    @param node_name: 提供TF图服务的ROS节点名称。
+    @return str: TF树的DOT图字符串。
+    """
+    print("Waiting for service {}/tf_frames".format(node_name))
+    rospy.wait_for_service('{}/tf_frames'.format(node_name))
+
+    try:
+        print("Polling service")
+        tf_frames_proxy = rospy.ServiceProxy('{}/tf_frames'.format(node_name), FrameGraph)
+        output = tf_frames_proxy.call(FrameGraphRequest())
+
+    except rospy.ServiceException as e:
+        print("Service call failed: {}".format(e))
+
+    return output.dot_graph
+
+# generate函数：将DOT图保存为文件并生成PDF或PS图像
+def generate(dot_graph):
+    """
+    generate(dot_graph)
+    @brief 将DOT图字符串保存到frames.gv文件，并使用Graphviz生成frames.pdf或frames.ps。
+    @param dot_graph: TF树的DOT图字符串。
+    """
+    with open('frames.gv', 'w') as outfile:
+        outfile.write(dot_graph)
+
+    try:
+        # 检查Graphviz的版本，如果版本过旧则生成PS文件，否则生成PDF文件。
+        args = ["dot", "-V"]
+        try:
+            vstr = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()[1]
+        except OSError as ex:
+            print("Warning: Could not execute `dot -V`.  Is graphviz installed?")
+            sys.exit(-1)
+        v = distutils.version.StrictVersion('2.16')
+        r = re.compile(".*version (\d+\.?\d*)")
+        print(vstr)
+        m = r.search(vstr)
+        if not m or not m.group(1):
+          print('Warning: failed to determine your version of dot.  Assuming v2.16')
+        else:
+          version = distutils.version.StrictVersion(m.group(1))
+          print('Detected dot version {}'.format(version))
+        if version > distutils.version.StrictVersion('2.8'):
+          subprocess.check_call(["dot", "-Tpdf", "frames.gv", "-o", "frames.pdf"])
+          print("frames.pdf generated")
+        else:
+          subprocess.check_call(["dot", "-Tps2", "frames.gv", "-o", "frames.ps"])
+          print("frames.ps generated")
+    except subprocess.CalledProcessError:
+        print("failed to generate frames.pdf", file=sys.stderr)
+
+
+# 脚本主入口
+if __name__ == '__main__':
+    # 创建OptionParser对象，用于解析命令行参数。
+    parser = OptionParser(usage="usage: %prog [options]", prog='viewFrames.py')
+    # 添加--node选项，用于指定从哪个ROS节点获取TF图。
+    parser.add_option("--node", metavar="node name",
+                      type="string", help="Node to get frames from",
+                      dest="node")
+    # 解析命令行参数。
+    options, args = parser.parse_args()
+
+    dot_graph = ''
+    # 如果没有指定节点，则监听/tf话题5秒钟获取TF图。
+    if not options.node:
+        dot_graph = listen(5.0)
+    # 如果指定了节点，则通过服务调用从指定节点获取TF图。
+    else:
+        print("Generating graph for node: ", options.node)
+        dot_graph = poll(options.node)
+
+    # 生成TF图的PDF或PS文件。
+    generate(dot_graph)
