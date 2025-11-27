@@ -1,4 +1,6 @@
 # UCAR - 智能自动驾驶小车项目
+![224916c2f67abcd6e364ff63b6bb821a](https://github.com/user-attachments/assets/3288de70-d7fe-4324-a156-97002796f058)
+![224916c2f67abcd6e364ff63b6bb821a](https://github.com/user-attachments/assets/81e08e41-76d3-43c5-ab60-e32b2c8b2937)
 
 UCAR（智能自动驾驶小车）是一个基于ROS（Robot Operating System）平台开发的自动驾驶机器人项目。该项目整合了多种传感器和算法，实现了自主导航、语音控制、计算机视觉等功能，可用于教学、研究和开发目的。
 
@@ -117,9 +119,6 @@ python main.py
 | [qingzhou.sh](file:///c%3A/Users/liu%27jin/xwechat_files/wxid_gf63e4ybenh522_9079/msg/file/2025-06/ucar_ws/ucar_ws/src/qingzhou.sh) | 一键启动所有系统组件 |
 | [goal_test1.py](file:///c%3A/Users/liu%27jin/xwechat_files/wxid_gf63e4ybenh522_9079/msg/file/2025-06/ucar_ws/ucar_ws/src/goal_test1.py) | 导航目标点测试脚本 |
 
-## 🤝 贡献
-
-该项目由科大讯飞团队开发和维护，主要用于教育和研究目的。
 
 ## 📄 许可证
 
