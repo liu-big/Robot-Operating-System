@@ -97,7 +97,7 @@ python main.py
 
 ## ⚙️ 硬件要求
 
-- 瑞芯微RK3399开发板
+- 瑞芯微RK3588开发板
 - YDLIDAR X2/X4激光雷达
 - FDILINK AHRS IMU模块
 - USB摄像头
