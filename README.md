@@ -1,6 +1,7 @@
 # UCAR - 智能自动驾驶小车项目
 ![224916c2f67abcd6e364ff63b6bb821a](https://github.com/user-attachments/assets/3288de70-d7fe-4324-a156-97002796f058)
-![224916c2f67abcd6e364ff63b6bb821a](https://github.com/user-attachments/assets/81e08e41-76d3-43c5-ab60-e32b2c8b2937)
+<img width="702" height="978" alt="efe56dca-5913-4ed1-bec4-9086785f2f56" src="https://github.com/user-attachments/assets/d348f4d4-687f-43ac-8b75-9b964098db02" />
+
 
 UCAR（智能自动驾驶小车）是一个基于ROS（Robot Operating System）平台开发的自动驾驶机器人项目。该项目整合了多种传感器和算法，实现了自主导航、语音控制、计算机视觉等功能，可用于教学、研究和开发目的。
 
